@@ -2,3 +2,8 @@ allow system_server app_efs_file:dir search;
 allow system_server efs_file:dir search;
 allow system_server vibrator_sysfs_file:dir search;
 allow system_server vibrator_sysfs_file:file rw_file_perms;
+
+# To improve app launch times - we would like to force all tasks to
+# run on big cores for app launch (sched_boost) - instead of just
+# boosting them to make it "more likely" to run on big cores.
+allow system_server domain:process setsched;
