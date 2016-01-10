@@ -33,9 +33,11 @@
 #include <camera/Camera.h>
 #include <camera/CameraParameters.h>
 
+using namespace android;
+
 static const char PIXEL_FORMAT_YUV420SP_NV21E[] = "yuv420sp-nv21e";
 
-static android::Mutex gCameraWrapperLock;
+static Mutex gCameraWrapperLock;
 static camera_module_t *gVendorModule = 0;
 
 static camera_notify_callback gUserNotifyCb = NULL;
@@ -112,8 +114,8 @@ static int check_vendor_module()
 #define KEY_VIDEO_HFR_VALUES "video-hfr-values"
 static char *camera_fixup_getparams(int id, const char *settings)
 {
-    android::CameraParameters params;
-    params.unflatten(android::String8(settings));
+    CameraParameters params;
+    params.unflatten(String8(settings));
 
 #if !LOG_NDEBUG && defined(LOG_PARAMETERS)
     ALOGV("%s: original parameters:", __FUNCTION__);
@@ -121,9 +123,9 @@ static char *camera_fixup_getparams(int id, const char *settings)
 #endif
 
     // fix params here
-    params.set(android::CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "0.5");
-    params.set(android::CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-2");
-    params.set(android::CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "2");
+    params.set(CameraParameters::KEY_EXPOSURE_COMPENSATION_STEP, "0.5");
+    params.set(CameraParameters::KEY_MIN_EXPOSURE_COMPENSATION, "-2");
+    params.set(CameraParameters::KEY_MAX_EXPOSURE_COMPENSATION, "2");
 
     /* If the vendor has HFR values but doesn't also expose that
      * this can be turned off, fixup the params to tell the Camera
@@ -131,12 +133,12 @@ static char *camera_fixup_getparams(int id, const char *settings)
      */
     params.set(KEY_VIDEO_HFR_VALUES, "off");
 
-    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x360,640x480,352x288,320x240,176x144");
+    params.set(CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x360,640x480,352x288,320x240,176x144");
 
     /* Enforce video-snapshot-supported to true */
-    params.set(android::CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
+    params.set(CameraParameters::KEY_VIDEO_SNAPSHOT_SUPPORTED, "true");
 
-    android::String8 strParams = params.flatten();
+    String8 strParams = params.flatten();
     char *ret = strdup(strParams.string());
 
 #if !LOG_NDEBUG
@@ -150,18 +152,18 @@ static char *camera_fixup_getparams(int id, const char *settings)
 static char *camera_fixup_setparams(struct camera_device *device, const char *settings)
 {
     int id = CAMERA_ID(device);
-    android::CameraParameters params;
-    params.unflatten(android::String8(settings));
+    CameraParameters params;
+    params.unflatten(String8(settings));
 
 #if !LOG_NDEBUG
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
 
-    params.set(android::CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x360,640x480,528x432,352x288,320x240,176x144");
-    params.set(android::CameraParameters::KEY_PREVIEW_FPS_RANGE, "7500,30000");
+    params.set(CameraParameters::KEY_SUPPORTED_PREVIEW_SIZES, "640x360,640x480,528x432,352x288,320x240,176x144");
+    params.set(CameraParameters::KEY_PREVIEW_FPS_RANGE, "7500,30000");
 
-    android::String8 strParams = params.flatten();
+    String8 strParams = params.flatten();
 
     if (fixed_set_params[id])
         free(fixed_set_params[id]);
@@ -491,7 +493,7 @@ static int camera_device_close(hw_device_t *device)
 
     ALOGV("%s", __FUNCTION__);
 
-    android::Mutex::Autolock lock(gCameraWrapperLock);
+    Mutex::Autolock lock(gCameraWrapperLock);
 
     if (!device) {
         ret = -EINVAL;
@@ -544,7 +546,7 @@ static int camera_device_open(const hw_module_t *module, const char *name,
     wrapper_camera_device_t *camera_device = NULL;
     camera_device_ops_t *camera_ops = NULL;
 
-    android::Mutex::Autolock lock(gCameraWrapperLock);
+    Mutex::Autolock lock(gCameraWrapperLock);
 
     ALOGV("%s", __FUNCTION__);
 
