@@ -155,6 +155,10 @@ PRODUCT_PACKAGES += \
     libtinyxml2 \
     memtrack.msm8916
 
+# Doze
+PRODUCT_PACKAGES += \
+    SamsungDoze
+
 # DRM
 PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
