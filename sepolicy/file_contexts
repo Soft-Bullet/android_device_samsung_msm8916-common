@@ -40,6 +40,9 @@
 # RIL
 /dev/socket/rild-cas                                 u:object_r:rild_cas_socket:s0
 
+# Tombstones
+/tombstones                                          u:object_r:rootfs:s0
+
 # USB
 /sys/devices/platform/msm_hsusb/gadget/lun0(/.*)?    u:object_r:sysfs_android_usb:s0
 
