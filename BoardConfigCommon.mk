@@ -168,6 +168,9 @@ TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 TARGET_KERNEL_SELINUX_LOG_CONFIG := selinux_log_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
 
+# Lights
+TARGET_PROVIDES_LIBLIGHT := true
+
 # Malloc implementation
 MALLOC_SVELTE := true
 
