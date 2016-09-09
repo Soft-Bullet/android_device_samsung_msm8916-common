@@ -204,7 +204,6 @@ lib/libsecril-client.so:vendor/lib/libsecril-client.so
 vendor/lib/libril-qcril-hook-oem.so
 
 # Samsung libs
-lib/libsecnativefeature.so:vendor/lib/libsecnativefeature.so
 lib/libseckeyprov.so:vendor/lib/libseckeyprov.so
 
 # Security

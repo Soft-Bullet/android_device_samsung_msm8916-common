@@ -363,6 +363,7 @@ PRODUCT_PACKAGES += \
 # Radio
 PRODUCT_PACKAGES += \
     librmnetctl \
+    libsecnativefeature \
     libshim_secril \
     libxml2 \
     macloader \
