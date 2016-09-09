@@ -210,7 +210,8 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     librmnetctl \
-    libxml2
+    libxml2 \
+    libsecnativefeature \
 
 # Manual SIM Provision
 PRODUCT_PACKAGES += \
