@@ -243,6 +243,15 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu2/online
                 echo 1 > /sys/devices/system/cpu/cpu3/online
                 echo 1 > /sys/devices/system/cpu/cpu4/online
+
+                # Update foreground and background cpusets
+                # Reserve CPU 3 for the top app
+                echo 0-2 > /dev/cpuset/foreground/cpus
+                echo 0-2 > /dev/cpuset/background/cpus
+                echo 0-1 > /dev/cpuset/system-background/cpus
+                echo 0-3 > /dev/cpuset/top-app/cpus
+                echo 0-3 > /dev/cpuset/camera-daemon/cpus
+                echo 0-3 > /dev/cpuset/restricted/cpus
             ;;
         esac
 
@@ -280,6 +289,15 @@ case "$target" in
                 echo 1 > /sys/devices/system/cpu/cpu2/online
                 echo 1 > /sys/devices/system/cpu/cpu3/online
                 echo 1 > /sys/devices/system/cpu/cpu4/online
+
+                # Update foreground and background cpusets
+                # Reserve CPU 3 for the top app
+                echo 0-2 > /dev/cpuset/foreground/cpus
+                echo 0-2 > /dev/cpuset/background/cpus
+                echo 0-1 > /dev/cpuset/system-background/cpus
+                echo 0-3 > /dev/cpuset/top-app/cpus
+                echo 0-3 > /dev/cpuset/camera-daemon/cpus
+                echo 0-3 > /dev/cpuset/restricted/cpus
 
                 # Enable low power modes
                 echo 0 > /sys/module/lpm_levels/parameters/sleep_disabled
@@ -498,6 +516,15 @@ case "$target" in
                     echo 1 > /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating
                 ;;
                 esac
+
+                # Update foreground and background cpusets
+                # Reserve CPU 3 for the top app
+                echo 0-6 > /dev/cpuset/foreground/cpus
+                echo 4-6 > /dev/cpuset/background/cpus
+                echo 4-6 > /dev/cpuset/system-background/cpus
+                echo 0-7 > /dev/cpuset/top-app/cpus
+                echo 4-7 > /dev/cpuset/camera-daemon/cpus
+                echo 4-7 > /dev/cpuset/restricted/cpus
             fi
             ;;
         esac

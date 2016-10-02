@@ -190,6 +190,13 @@ on boot
     # Allow access for CCID command/response timeout configuration
     chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
 
+    # add a cpuset for the camera daemon
+    # we want all the cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
 # reset_reason
     chown system system /proc/reset_reason
     chmod 0600 /proc/reset_reason
@@ -584,11 +591,13 @@ service qcamerasvr /system/bin/mm-qcamera-daemon
     class main
     user camera
     group camera system inet input graphics
+    writepid /dev/cpuset/camera-daemon/tasks
 
 service qseecomd /system/bin/qseecomd
    class core
    user root
    group root
+   writepid /dev/cpuset/system-background/tasks
 
 service perfd /system/vendor/bin/perfd
    class main
@@ -602,11 +611,13 @@ service thermal-engine /vendor/bin/thermal-engine
    socket thermal-recv-client stream 0660 system system
    socket thermal-recv-passive-client stream 0666 system system
    group root
+   writepid /dev/cpuset/system-background/tasks
 
 service time_daemon /system/bin/time_daemon
    class late_start
    user root
    group root
+   writepid /dev/cpuset/system-background/tasks
 
 service qcomsysd /system/bin/qcom-system-daemon
     class main
@@ -694,6 +705,7 @@ service rmt_storage /system/bin/rmt_storage
     user root
     group system wakelock
     disabled
+    writepid /dev/cpuset/system-background/tasks
 
 on property:wc_transport.start_hci=true
     start start_hci_filter
@@ -712,11 +724,13 @@ service qmuxd /system/bin/qmuxd
     class main
     user root
     group radio audio bluetooth gps nfc diag
+    writepid /dev/cpuset/system-background/tasks
 
 service netmgrd /system/bin/netmgrd
     class main
     user root
     group root wifi wakelock radio inet
+    writepid /dev/cpuset/system-background/tasks
 
 service sensors /system/bin/sensors.qcom
     class late_start
@@ -764,6 +778,7 @@ service loc_launcher /system/bin/loc_launcher
     #loc_launcher will start as root and set its uid to gps
     class late_start
     group gps inet net_raw diag net_admin wifi
+    writepid /dev/cpuset/system-background/tasks
 
 service fm_dl /vendor/bin/init.qcom.fm.sh
     class late_start
