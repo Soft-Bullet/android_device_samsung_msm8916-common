@@ -155,8 +155,8 @@ PRODUCT_PACKAGES += \
     libtinyxml2 \
     memtrack.msm8916
 
-# Doze
 PRODUCT_PACKAGES += \
+    AdvancedDisplay \
     SamsungDoze
 
 # DRM
