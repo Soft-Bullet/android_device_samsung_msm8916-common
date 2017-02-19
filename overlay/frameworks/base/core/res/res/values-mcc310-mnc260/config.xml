@@ -20,7 +20,7 @@
 <!-- These resources are around just to allow their values to be customized
      for different hardware and product builds. -->
 <resources>
-    <!-- Values for GPS configuration (Bell) -->
+    <!-- Values for GPS configuration (T-Mobile) -->
     <string-array translatable="false" name="config_gpsParameters">
         <item>NTP_SERVER=north-america.pool.ntp.org</item>
         <item>SUPL_ES=0</item>
