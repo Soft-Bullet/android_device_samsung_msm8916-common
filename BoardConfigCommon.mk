@@ -108,7 +108,7 @@ SMALLER_FONT_FOOTPRINT := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci pm.sleep_mode=1 androidboot.selinux=permissive
 
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
