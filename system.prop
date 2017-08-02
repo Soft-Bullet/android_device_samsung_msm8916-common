@@ -33,6 +33,10 @@ ro.bluetooth.sap=true
 ro.qualcomm.bt.hci_transport=smd
 ro.bt.bdaddr_path=/efs/bluetooth/bt_addr
 
+# Boot
+sys.vendor.shutdown.waittime=500
+ro.build.shutdown_timeout=0
+
 # Display
 debug.hwui.use_buffer_age=false
 debug.composition.type=c2d
