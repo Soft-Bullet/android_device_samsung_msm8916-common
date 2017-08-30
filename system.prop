@@ -6,6 +6,7 @@ audio.offload.buffer.size.kb=32
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
 audio.offload.video=true
+ro.audio.flinger_standbytime_ms=300
 vendor.audio.av.streaming.offload.enable=true
 vendor.audio.offload.buffer.size.kb=64
 vendor.audio.offload.gapless.enabled=false
