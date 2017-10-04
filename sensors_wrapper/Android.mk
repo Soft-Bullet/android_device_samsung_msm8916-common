@@ -25,5 +25,6 @@ LOCAL_SRC_FILES := sensorswrapper.c
 
 LOCAL_SHARED_LIBRARIES := liblog libcutils libhardware
 LOCAL_MODULE_TAGS := optional
+LOCAL_VENDOR_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
