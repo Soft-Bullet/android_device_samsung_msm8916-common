@@ -44,3 +44,5 @@ allow init hal_drm_hwservice:hwservice_manager { add };
 allow init sysfs_livedisplay_tuneable:file { read };
 allow init sysfs_mdnie:file { read write };
 allow init sysfs_graphics:file { read write };
+allow init nfc_device:chr_file { read write open ioctl };
+allow init nfc:binder { call };
