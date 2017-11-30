@@ -43,5 +43,8 @@
 # RIL
 /dev/socket/rild-cas                                 u:object_r:rild_cas_socket:s0
 
+# USB
+/sys/devices/platform/msm_hsusb/gadget/lun0/         u:object_r:sysfs_android_usb:s0
+
 # Vibrator
 /sys/devices/virtual/timed_output/vibrator(/.*)?     u:object_r:vibrator_sysfs_file:s0
