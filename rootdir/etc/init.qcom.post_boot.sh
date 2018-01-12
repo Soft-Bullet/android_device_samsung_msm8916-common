@@ -548,6 +548,17 @@ case "$emmc_boot"
     ;;
 esac
 
+    # disable wakelocks
+    write /sys/module/wakeup/parameters/enable_qcom_rx_wakelock_ws 0
+    write /sys/module/wakeup/parameters/enable_wlan_extscan_wl_ws 0
+    write /sys/module/wakeup/parameters/enable_ipa_ws 0
+    write /sys/module/wakeup/parameters/enable_wlan_ws 0
+    write /sys/module/wakeup/parameters/enable_timerfd_ws 0
+    write /sys/module/wakeup/parameters/enable_netlink_ws 0
+    write /sys/module/wakeup/parameters/enable_netmgr_wl_ws 0
+    write /sys/module/wakeup/parameters/enable_wlan_pno_wl_ws 0
+    write /sys/module/wakeup/parameters/enable_wcnss_filter_lock_ws 0
+
 # Post-setup services
 case "$target" in
     "msm8916")
