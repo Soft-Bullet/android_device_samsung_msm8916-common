@@ -1,16 +1,16 @@
-#!/system/bin/sh
+#!/vendor/bin/sh
 
 LOG_TAG="link_telephony_dbs"
 LOG_NAME="${0}:"
 
 loge ()
 {
-  /system/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
+  /vendor/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
 }
 
 logi ()
 {
-  /system/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
+  /vendor/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
 }
 
 OLD_TELEPHONY_DB_DIR=/data/user_de/0/com.android.providers.telephony/databases/

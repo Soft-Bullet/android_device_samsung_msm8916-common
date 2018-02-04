@@ -57,7 +57,7 @@ on early-boot
     write /sys/kernel/boot_adsp/boot 1
     chown root audio /sys/kernel/boot_adsp/boot
     setprop qcom.audio.init complete
-    exec u:r:qti_init_shell:s0 -- /init.qcom.early_boot.sh
+    exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
 
 on boot
     start rmt_storage
@@ -664,7 +664,7 @@ on property:persist.debug.trace=1
 on property:bluetooth.isEnabled=true
     write /sys/class/bluetooth/hci0/idle_timeout 7000
 
-service qcom-c_main-sh /system/bin/sh /init.class_main.sh
+service qcom-c_main-sh /vendor/bin/init.class_main.sh
     class main
     user root
     oneshot
@@ -748,7 +748,7 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
 
-service link_ril_db /system/bin/sh /init.link_ril_db.sh
+service link_ril_db /vendor/bin/init.link_ril_db.sh
     class main
     user root
     oneshot
@@ -765,19 +765,19 @@ service loc_launcher /system/bin/loc_launcher
     class late_start
     group gps inet net_raw diag net_admin wifi
 
-service fm_dl /system/bin/sh /system/etc/init.qcom.fm.sh
+service fm_dl /vendor/bin/init.qcom.fm.sh
     class late_start
     user system
     group system
     disabled
     oneshot
 
-service qcom-sh /system/bin/sh /init.qcom.sh
+service qcom-sh /vendor/bin/init.qcom.sh
     class late_start
     user root
     oneshot
 
-service qcom-post-boot /system/bin/sh /init.qcom.post_boot.sh
+service qcom-post-boot /vendor/bin/init.qcom.post_boot.sh
     class late_start
     user root
     disabled
@@ -803,7 +803,7 @@ service ril-daemon2 /vendor/bin/hw/rild -l /system/lib/libsec-ril-dsds.so -c 2
     group radio cache inet misc audio log readproc wakelock
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
 
-service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
+service usb_uicc_enable /vendor/bin/init.qcom.uicc.sh
     class late_start
     user root
     disabled
