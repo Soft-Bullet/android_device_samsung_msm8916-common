@@ -85,7 +85,7 @@ start_charger_monitor()
 
 start_msm_irqbalance_8939()
 {
-	if [ -f /system/bin/msm_irqbalance ]; then
+	if [ -f /vendor/bin/msm_irqbalance ]; then
 		case "$platformid" in
 		    "239" | "241" | "263" | "268" | "269" | "270" | "271")
 			start msm_irqbalance;;
@@ -95,15 +95,15 @@ start_msm_irqbalance_8939()
 
 start_msm_irqbalance()
 {
-	if [ -f /system/bin/msm_irqbalance ]; then
+	if [ -f /vendor/bin/msm_irqbalance ]; then
 		start msm_irqbalance
 	fi
 }
 
 start_copying_prebuilt_qcril_db()
 {
-    if [ -f /system/vendor/qcril.db -a ! -f /data/misc/radio/qcril.db ]; then
-        cp /system/vendor/qcril.db /data/misc/radio/qcril.db
+    if [ -f /vendor/qcril.db -a ! -f /data/misc/radio/qcril.db ]; then
+        cp /vendor/qcril.db /data/misc/radio/qcril.db
         chown -h radio.radio /data/misc/radio/qcril.db
     fi
 }
