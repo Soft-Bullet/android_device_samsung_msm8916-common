@@ -433,25 +433,12 @@ on post-fs-data
     write /data/.wifiver.info 0
     chown system root /data/.wifiver.info
     chmod 0666 /data/.wifiver.info
-    # Create the directories used by CnE subsystem
-    mkdir /data/connectivity 0771 system system
-    chown system system /data/connectivity
 
     # For SEC NFC
     chmod 0770 /data/nfc
     chown nfc nfc /data/nfc
     chmod 0770 /data/nfc/param
     chown nfc nfc /data/nfc/param
-
-    # Create the directories used by DPM subsystem
-    mkdir /data/dpm 0771 system system
-    chown system system /data/dpm
-
-    mkdir /data/dpm/fdMgr 0771 system system
-    chown system system /data/dpm/fdMgr
-
-    mkdir /data/dpm/nsrm 0771 system system
-    chown system system /data/dpm/nsrm
 
     # Create directory used by audio subsystem
     mkdir /data/misc/audio 0770 audio audio
@@ -727,12 +714,6 @@ service wlandutservice /system/vendor/bin/wlandutservice
     group wifi net_raw net_admin system inet
     disabled
     oneshot
-
-service loc_launcher /system/vendor/bin/loc_launcher
-    #loc_launcher will start as root and set its uid to gps
-    class late_start
-    group gps inet net_raw diag net_admin wifi
-    writepid /dev/cpuset/system-background/tasks
 
 service fm_dl /system/vendor/bin/init.qcom.fm.sh
     class late_start
