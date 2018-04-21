@@ -37,9 +37,6 @@
 # Partitions
 /dev/block/platform/soc\.0/7824900\.sdhci/by-name/efs  u:object_r:modem_efs_partition_device:s0
 
-# RFS
-/sys/kernel/debug/rmt_storage(/.*)?                  u:object_r:rmt_storage_debugfs_file:s0
-
 # RIL
 /dev/socket/rild-cas                                 u:object_r:rild_cas_socket:s0
 
