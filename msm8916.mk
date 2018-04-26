@@ -311,6 +311,10 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.data.large_tcp_window_size=true \
     sys.disable_ext_animation=1
 
+# Native libraries
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
+
 # OEM Unlock
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.oem_unlock_supported=0
