@@ -550,6 +550,9 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     group camera system inet input graphics
     writepid /dev/cpuset/camera-daemon/tasks
 
+on property:sys.boot_completed=1
+    restart cameraserver
+
 service qseecomd /system/vendor/bin/qseecomd
    class core
    user root
