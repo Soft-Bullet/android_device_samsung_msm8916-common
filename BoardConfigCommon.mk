@@ -35,6 +35,8 @@ TARGET_CPU_SMP := true
 TARGET_CPU_VARIANT := cortex-a53
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 
+BUILD_BROKEN_DUP_RULES := true
+
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
