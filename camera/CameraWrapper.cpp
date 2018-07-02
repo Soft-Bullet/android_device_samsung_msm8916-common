@@ -24,7 +24,7 @@
 #define LOG_NDEBUG 0
 
 #define LOG_TAG "CameraWrapper"
-#include <cutils/log.h>
+#include <log/log.h>
 
 #include <utils/threads.h>
 #include <utils/String8.h>
@@ -117,7 +117,7 @@ static char *camera_fixup_getparams(int id, const char *settings)
     CameraParameters params;
     params.unflatten(String8(settings));
 
-#if !LOG_NDEBUG
+#if !LOG_NDEBUG && defined(LOG_PARAMETERS)
     ALOGV("%s: original parameters:", __FUNCTION__);
     params.dump();
 #endif
