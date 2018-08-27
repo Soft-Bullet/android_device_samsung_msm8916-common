@@ -93,9 +93,6 @@ TARGET_HW_KEYMASTER_V03 := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 TARGET_PROVIDES_KEYMASTER := true
 
-# Exclude serif fonts for saving system.img size.
-EXCLUDE_SERIF_FONTS := true
-
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -109,6 +106,10 @@ BOARD_ROOT_EXTRA_FOLDERS := firmware firmware-modem efs persist
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
+
+# Fonts
+EXCLUDE_SERIF_FONTS := true
+SMALLER_FONT_FOOTPRINT := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
