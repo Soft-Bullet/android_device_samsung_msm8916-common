@@ -116,6 +116,9 @@ PRODUCT_PACKAGES += \
     libmm-qcamera \
     camera.msm8916
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/camera/external_camera_config.xml:$(TARGET_COPY_OUT_VENDOR)/etc/external_camera_config.xml
+
 # Connectivity Engine
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.cne.dpm=0 \
