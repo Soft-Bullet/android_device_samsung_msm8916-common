@@ -385,9 +385,6 @@ on fs
     chmod 0777 /dev/radio0
     chown system system /dev/radio0
 
-    # Start HW service manager early
-    start hwservicemanager
-
 on late-fs
     # Start services for bootanim
     start vendor.configstore-hal
