@@ -199,10 +199,7 @@ TARGET_EXCLUDES_AUDIOFX := true
 
 # FM
 PRODUCT_PACKAGES += \
-    FM2 \
-    FMRecord \
-    libqcomfm_jni \
-    qcom.fmradio
+    FMRadio
 
 # FM
 PRODUCT_PROPERTY_OVERRIDES += \
