@@ -1,6 +1,20 @@
 # Camera
 /data/cam_socket[0-9]                                u:object_r:camera_socket:s0
 
+# Charger
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/max77843-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/max77849-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/rt5033-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/s2mu003-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/sm5418-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/sm5701-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/sm5703-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/sm5705-charger/power_supply(/.*)?  u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/i2c\.[0-9]+/i2c-[0-9]/[0-9]-[a-z0-9]+/power_supply(/.*)?                   u:object_r:sysfs_batteryinfo:s0
+/sys/devices(/platform)?/soc\.0/78db000\.usb/power_supply(/.*)?                                            u:object_r:sysfs_batteryinfo:s0
+/sys/devices/battery\.[0-9]+/power_supply(/.*)?                                                            u:object_r:sysfs_batteryinfo:s0
+/sys/devices/battery\.[0-9]+/power_supply/battery(/.*)?                                                    u:object_r:sysfs_batteryinfo:s0
+
 # EFS
 /efs/imei(/.*)?                                      u:object_r:imei_efs_file:s0
 
