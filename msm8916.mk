@@ -288,6 +288,10 @@ PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video_le.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_video_le.xml
 
+# LiveDisplay
+PRODUCT_PACKAGES += \
+   vendor.lineage.livedisplay@2.0-service.samsung-qcom
+
 # Media
 PRODUCT_PACKAGES += \
     libextmedia_jni \
