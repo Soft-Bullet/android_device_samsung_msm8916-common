@@ -60,18 +60,8 @@ on early-boot
     exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
 
 on boot
-    chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
-    chown bluetooth bluetooth /proc/bluetooth/sleep/proto
-    chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_lpm
-    chown bluetooth bluetooth /sys/module/hci_uart/parameters/ath_btwrite
-    chown system system /sys/module/sco/parameters/disable_esco
-    chown bluetooth bluetooth /sys/module/hci_smd/parameters/hcismd_set
-    chown system system /sys/module/radio_iris_transport/parameters/fmsmd_set
-    chmod 0660 /sys/module/bluetooth_power/parameters/power
-    chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
-    chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /proc/bluetooth/sleep/proto
     chown bluetooth bluetooth /dev/ttyHS0
@@ -124,14 +114,10 @@ on boot
     chmod 0775 /efs/bluetooth
 
     #Create QMUX deamon socket area
-    mkdir /dev/socket/qmux_radio 0770 radio radio
-    chmod 2770 /dev/socket/qmux_radio
-    mkdir /dev/socket/qmux_audio 0770 media audio
-    chmod 2770 /dev/socket/qmux_audio
-    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
-    chmod 2770 /dev/socket/qmux_bluetooth
-    mkdir /dev/socket/qmux_gps 0770 gps gps
-    chmod 2770 /dev/socket/qmux_gps
+    mkdir /dev/socket/qmux_radio 2770 radio radio
+    mkdir /dev/socket/qmux_audio 2770 media audio
+    mkdir /dev/socket/qmux_bluetooth 2770 bluetooth bluetooth
+    mkdir /dev/socket/qmux_gps 2770 gps gps
 
     mkdir /persist/drm 0770 system system
     mkdir /persist/misc 0770 system system
@@ -150,11 +136,6 @@ on boot
 
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
-
-    chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
-
-    #For bridgemgr daemon to inform the USB driver of the correct transport
-    chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
 
 #   Define TCP buffer sizes for various networks
 #   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
@@ -185,9 +166,6 @@ on boot
     # Set the console loglevel to < KERN_INFO
     # Set the default message loglevel to KERN_INFO
     write /proc/sys/kernel/printk "6 6 1 7"
-
-    # Allow access for CCID command/response timeout configuration
-    chown system system /sys/module/ccid_bridge/parameters/bulk_msg_timeout
 
     # add a cpuset for the camera daemon
     # we want all the cores for camera
@@ -421,15 +399,7 @@ on post-fs
     # Allow writing to the kernel trace log.
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
 
-# msm specific files that need to be created on /data
 on post-fs-data
-    mkdir /tombstones/modem 0771 system system
-    mkdir /tombstones/lpass 0771 system system
-    mkdir /tombstones/wcnss 0771 system system
-    mkdir /tombstones/dsps 0771 system system
-    mkdir /persist/data/sfs 0700 system system
-    mkdir /persist/data/tz 0700 system system
-
     # radio
     mkdir /data/log 0660 radio radio
 
@@ -439,7 +409,7 @@ on post-fs-data
     # sec_efs_file
     mkdir /efs/sec_efs 0775 radio system
 
-    # we will remap this as /mnt/sdcard with the sdcard fuse tool
+    # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
 
     mkdir /data/misc/ipa 0700 net_admin net_admin
@@ -448,8 +418,6 @@ on post-fs-data
 
     # Create the directories used by the Wireless subsystem
     mkdir /data/vendor/wifi 0770 wifi wifi
-    mkdir /data/vendor/wifi/sockets 0770 wifi wifi
-    mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa 0770 wifi wifi
     mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0775 dhcp dhcp
@@ -518,13 +486,6 @@ on post-fs-data
     mkdir /data/misc/location 0770 gps gps
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
-    mkdir /data/misc/location/gpsone_d 0770 system gps
-    mkdir /data/misc/location/quipc 0770 gps system
-    mkdir /data/misc/location/gsiff 0770 gps gps
-
-    #Create directory from IMS services
-    mkdir /data/shared 0755
-    chown system system /data/shared
 
     #Create directory for FOTA
     mkdir /data/fota 0771
@@ -533,22 +494,19 @@ on post-fs-data
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
-    mkdir /data/audio/ 0770 media audio
-
     setprop vold.post_fs_data_done 1
-
-    #Create a folder for SRS to be able to create a usercfg file
-    mkdir /data/data/media 0770 media media
 
     #Create folder for mm-qcamera-daemon
     mkdir /data/camera 0770 media camera
 
     #Create PERFD deamon related dirs
-    mkdir /data/misc/perfd 0755 root system
-    chmod 2755 /data/misc/perfd
-    mkdir /data/system/perfd 0770 root system
-    chmod 2770 /data/system/perfd
-    mkdir /persist/drm 0770 system system
+    mkdir /data/misc/perfd 2755 root system
+    mkdir /data/system/perfd 2770 root system
+
+    mkdir /data/tombstones/modem 0771 system system
+    mkdir /data/tombstones/lpass 0771 system system
+    mkdir /data/tombstones/wcnss 0771 system system
+    mkdir /data/tombstones/dsps 0771 system system
 
     # NFC local data and nfcee xml storage
     mkdir /data/nfc 0770 nfc nfc
@@ -585,7 +543,7 @@ on post-fs-data
     # link  the telephony database
     start link_ril_db
 
-#start camera server as daemon
+# start camera server as daemon
 service qcamerasvr /vendor/bin/mm-qcamera-daemon
     class main
     user camera
@@ -671,9 +629,6 @@ on property:persist.debug.trace=1
     # Mark wifi driver as unloaded - "ok" indicates loaded
     setprop wlan.driver.status not_ok
 
-on property:bluetooth.isEnabled=true
-    write /sys/class/bluetooth/hci0/idle_timeout 7000
-
 service qcom-c_main-sh /vendor/bin/init.class_main.sh
     class main
     user root
@@ -683,9 +638,6 @@ on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
     start config_bt_addr
     start wcnss-service
-
-on property:persist.env.fastdorm.enabled=true
-    setprop persist.radio.data_no_toggle 1
 
 # FM enable/disable triggers
 on property:vendor.hw.fm.init=1

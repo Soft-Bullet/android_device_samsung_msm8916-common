@@ -69,7 +69,6 @@ vendor/lib/hw/vendor.qti.hardware.fm@1.0-impl.so
 vendor/lib/vendor.qti.hardware.fm@1.0_vendor.so
 
 # GPS - From Crackling
-bin/loc_launcher:vendor/bin/loc_launcher|15ae2a85e57a2e787f72f564e6f9c730827fe0e0
 -lib/libloc_api_v02.so:vendor/lib/libloc_api_v02.so|03860b5a4e72edd96c9acce3886b6d23
 -lib/libloc_ds_api.so:vendor/lib/libloc_ds_api.so|31c3c73f4e449eded83f32eabc561c29
 vendor/lib/hw/flp.default.so|48b1901aac6ce882c415dcbbffc36432
