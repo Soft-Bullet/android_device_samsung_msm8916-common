@@ -40,6 +40,7 @@ BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
 # Apex
 DEXPREOPT_GENERATE_APEX_IMAGE := true
+TARGET_FLATTEN_APEX := true
 
 # Audio
 AUDIO_CONFIG_PATH := hardware/qcom/audio-caf/msm8916/configs
