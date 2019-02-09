@@ -201,6 +201,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # FS
 PRODUCT_PACKAGES += \
+    fs_config_files \
     fsck.f2fs \
     mkfs.f2fs
 
