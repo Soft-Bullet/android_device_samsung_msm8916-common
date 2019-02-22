@@ -538,6 +538,9 @@ case "$target" in
                 setprop ro.min_freq_0 200000
            ;;
         esac
+
+        setprop vendor.post_boot.parsed 1
+
         #start perfd after setprop
         start perfd # start perfd on 8916, 8939 and 8929
     ;;
