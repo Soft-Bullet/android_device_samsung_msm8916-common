@@ -38,6 +38,9 @@ TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
 
+# Apex
+DEXPREOPT_GENERATE_APEX_IMAGE := true
+
 # Audio
 AUDIO_CONFIG_PATH := hardware/qcom/audio-caf/msm8916/configs
 BOARD_USES_ALSA_AUDIO := true
