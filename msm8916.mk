@@ -17,17 +17,9 @@
 # Inherit from common
 $(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
 
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-
-# Include proprietary blobs
-$(call inherit-product-if-exists, vendor/samsung/msm8916-common/msm8916-common-vendor.mk)
-
-LOCAL_PATH := device/samsung/msm8916-common
-
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay
 
 # Assistant
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -157,8 +149,7 @@ PRODUCT_PACKAGES += \
     libgenlock \
     libtinyxml \
     libtinyxml2 \
-    memtrack.msm8916 \
-    vendor.lineage.livedisplay@1.0-service-legacymm
+    memtrack.msm8916
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -480,3 +471,6 @@ PRODUCT_PACKAGES += \
 # ZRAM - Size in MB
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.config.zram.size=128
+
+# Include proprietary blobs
+$(call inherit-product-if-exists, vendor/samsung/msm8916-common/msm8916-common-vendor.mk)

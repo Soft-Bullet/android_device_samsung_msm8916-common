@@ -13,10 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-LOCAL_PATH := device/samsung/msm8916-common
+PLATFORM_PATH := device/samsung/msm8916-common
 
 # Includes
-TARGET_SPECIFIC_HEADER_PATH := $(LOCAL_PATH)/include
+TARGET_SPECIFIC_HEADER_PATH := $(PLATFORM_PATH)/include
 
 # Inherit from common
 -include device/samsung/qcom-common/BoardConfigCommon.mk
@@ -27,7 +27,7 @@ FORCE_32_BIT := true
 TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_BOARD_PLATFORM := msm8916
-TARGET_BOARD_PLATFORM_GPU       := qcom-adreno306
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno306
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_CORTEX_A53 := true
@@ -49,13 +49,13 @@ USE_XML_AUDIO_POLICY_CONF := 1
 # Mixer paths
 ifneq ($(USE_CUSTOM_MIXER_PATHS), true)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml
+    $(PLATFORM_PATH)/configs/audio/mixer_paths.xml:$(TARGET_COPY_OUT_VENDOR)/etc/mixer_paths.xml
 endif
 
 #XML Audio configuration files
 ifeq ($(USE_XML_AUDIO_POLICY_CONF), 1)
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
+    $(PLATFORM_PATH)/configs/audio/audio_effects.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_effects.xml \
     $(AUDIO_CONFIG_PATH)/msm8916_32/audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/a2dp_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/audio_policy_volumes.xml:$(TARGET_COPY_OUT_VENDOR)/etc/audio_policy_volumes.xml \
@@ -90,15 +90,9 @@ TARGET_USES_QTI_CAMERA_DEVICE := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Charger
-BOARD_CHARGER_ENABLE_SUSPEND    := true
-BOARD_CHARGER_SHOW_PERCENTAGE   := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_SHOW_PERCENTAGE := true
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
-
-# CMHW
-#BOARD_USES_CYANOGEN_HARDWARE := true
-JAVA_SOURCE_OVERLAYS += \
-	org.lineageos.hardware|hardware/samsung/lineagehw|**/*.java \
-	org.lineageos.hardware|$(LOCAL_PATH)/lineagehw|**/*.java
 
 # Display
 MAX_EGL_CACHE_KEY_SIZE := 12*1024
@@ -119,17 +113,17 @@ TARGET_HW_KEYMASTER_V03 := true
 TARGET_KEYMASTER_WAIT_FOR_QSEE := true
 
 ifeq ($(RECOVERY_VARIANT),twrp)
-	TARGET_HW_DISK_ENCRYPTION := false
-	TARGET_SWV8_DISK_ENCRYPTION := false
+    TARGET_HW_DISK_ENCRYPTION := false
+    TARGET_SWV8_DISK_ENCRYPTION := false
 else
-	TARGET_HW_DISK_ENCRYPTION := true
-	TARGET_SWV8_DISK_ENCRYPTION := true
+    TARGET_HW_DISK_ENCRYPTION := true
+    TARGET_SWV8_DISK_ENCRYPTION := true
 endif
 
 # Filesystems
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE   := ext4
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_SYSTEMIMAGE_PARTITION_TYPE    := ext4
+BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
@@ -142,22 +136,19 @@ AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
 TARGET_NO_RPC := true
 USE_DEVICE_SPECIFIC_GPS := true
 
-# Healthd
-BOARD_HAL_STATIC_LIBRARIES := libhealthd.lineage
-
 # Init
 TARGET_INIT_VENDOR_LIB := libinit_msm8916
-TARGET_RECOVERY_DEVICE_MODULES := $(LOCAL_PATH)/init
+TARGET_RECOVERY_DEVICE_MODULES := $(PLATFORM_PATH)/init
 
 # Kernel
 BOARD_KERNEL_CMDLINE += \
-	console=null \
-	androidboot.hardware=qcom \
-	user_debug=23 \
-	msm_rtb.filter=0x3F \
-	ehci-hcd.park=3 \
-	androidboot.bootdevice=7824900.sdhci \
-	androidboot.selinux=permissive
+    console=null \
+    androidboot.hardware=qcom \
+    user_debug=23 \
+    msm_rtb.filter=0x3F \
+    ehci-hcd.park=3 \
+    androidboot.bootdevice=7824900.sdhci \
+    androidboot.selinux=permissive
 
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
@@ -167,24 +158,18 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_SEPARATED_DT := true
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
-BOARD_RAMDISK_OFFSET     := 0x02000000
+BOARD_RAMDISK_OFFSET := 0x02000000
 LZMA_RAMDISK_TARGETS := recovery
 TARGET_KERNEL_CONFIG := msm8916_sec_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 TARGET_KERNEL_SELINUX_LOG_CONFIG := selinux_log_defconfig
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
 
-# Kernel - Toolchain
-ifneq ($(wildcard $(BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-7.2/bin),)
-    KERNEL_TOOLCHAIN := $(BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-7.2/bin
-    KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
-endif
-
 # Malloc implementation
 MALLOC_SVELTE := true
 
 # Media
-TARGET_QCOM_MEDIA_VARIANT           := caf
+TARGET_QCOM_MEDIA_VARIANT := caf
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
 # Network Routing
@@ -194,10 +179,10 @@ TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
 BOARD_NFC_HAL_SUFFIX := msm8916
 
 # Partition sizes
-BOARD_BOOTIMAGE_PARTITION_SIZE      := 13631488
-BOARD_RECOVERYIMAGE_PARTITION_SIZE  := 15728640
-BOARD_CACHEIMAGE_PARTITION_SIZE     := 314572800
-BOARD_FLASH_BLOCK_SIZE              := 131072
+BOARD_BOOTIMAGE_PARTITION_SIZE := 13631488
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 15728640
+BOARD_CACHEIMAGE_PARTITION_SIZE := 314572800
+BOARD_FLASH_BLOCK_SIZE := 131072
 
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
@@ -215,25 +200,25 @@ PROTOBUF_SUPPORTED := true
 
 # Qualcomm support
 TARGET_USES_QCOM_BSP := true
-HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE   := true
+HAVE_SYNAPTICS_I2C_RMI4_FW_UPGRADE := true
 USE_DEVICE_SPECIFIC_QCOM_PROPRIETARY := true
 TARGET_USES_NEW_ION_API := true
 
 # Recovery
-BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/msm8916-common/recovery/recovery_keys.c
-BOARD_HAS_NO_MISC_PARTITION	:= true
-BOARD_HAS_NO_SELECT_BUTTON	:= true
-BOARD_RECOVERY_SWIPE 		:= true
-BOARD_SUPPRESS_EMMC_WIPE	:= true
-BOARD_SUPPRESS_SECURE_ERASE	:= true
-BOARD_USE_CUSTOM_RECOVERY_FONT	:= \"roboto_23x41.h\"
-BOARD_USES_MMCUTILS	:= true
-RECOVERY_GRAPHICS_USE_LINELENGTH	:= true
-RECOVERY_SDCARD_ON_DATA	:= true
-TARGET_RECOVERY_DENSITY	:= hdpi
-TARGET_RECOVERY_FSTAB	:= device/samsung/msm8916-common/recovery/recovery.fstab
-TARGET_RECOVERY_PIXEL_FORMAT	:= "RGB_565"
-TARGET_RECOVERY_QCOM_RTC_FIX	:= true
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../$(PLATFORM_PATH)/recovery/recovery_keys.c
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+BOARD_SUPPRESS_SECURE_ERASE := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_23x41.h\"
+BOARD_USES_MMCUTILS := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_RECOVERY_DENSITY := hdpi
+TARGET_RECOVERY_FSTAB := $(PLATFORM_PATH)/recovery/recovery.fstab
+TARGET_RECOVERY_PIXEL_FORMAT := "RGB_565"
+TARGET_RECOVERY_QCOM_RTC_FIX := true
 
 # Recovery - TWRP
 TW_BRIGHTNESS_PATH := "/sys/class/leds/lcd-backlight/brightness"
@@ -252,18 +237,11 @@ TW_TARGET_USES_QCOM_BSP := false
 TW_THEME := portrait_hdpi
 
 ifeq ($(RECOVERY_VARIANT),twrp)
-	BOARD_GLOBAL_CFLAGS += -DTW_USE_MINUI_CUSTOM_FONTS
+    BOARD_GLOBAL_CFLAGS += -DTW_USE_MINUI_CUSTOM_FONTS
 endif
 
-#ifneq ($(wildcard bootable/recovery-twrp),)
-#	RECOVERY_VARIANT := twrp
-#endif
-
 # SELinux
-include device/qcom/sepolicy-legacy/sepolicy.mk
-
-#BOARD_SEPOLICY_DIRS += \
-#    $(LOCAL_PATH)/sepolicy
+include device/qcom/sepolicy/sepolicy.mk
 
 # Shims
 TARGET_LD_SHIM_LIBS := \

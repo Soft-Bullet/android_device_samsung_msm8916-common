@@ -20,17 +20,7 @@ set -e
 
 BOARD_COMMON=msm8916-common
 
-DEVICES_A3="a3lte a33g a3ulte"
-DEVICES_A5="a5ltechn a5ltectc"
-DEVICES_GPRIME="fortuna3g fortunave3g fortunalteub gprimelte gprimeltexx gprimeltespr gprimeltetfnvzw gprimeltezt gprimeltectc"
-DEVICES_GTE="gtelwifiue gtesqltespr gt510wifi"
-DEVICES_J5="j53gxx j5lte j5ltechn j5nlte"
-DEVICES_J5X="j5xnlte j5xlte"
-DEVICES_J7="j7ltespr j7ltechn"
-DEVICES_O7="o7prolte on7ltechn"
-DEVICES_SERRANO="serranovelte serranove3g"
-
-DEVICES_ALL="$DEVICES_A3 $DEVICES_A5 $DEVICES_GPRIME $DEVICES_GTE $DEVICES_J5 $DEVICES_J5X $DEVICES_J7 $DEVICES_O7 $DEVICES_SERRANO"
+PLATFORMS="msm8916 msm8939"
 
 VENDOR=samsung
 
@@ -59,8 +49,11 @@ fi
 
 HELPER="$LINEAGE_ROOT"/vendor/lineage/build/tools/extract_utils.sh
 if [ ! -f "$HELPER" ]; then
-    echo "Unable to find helper script at $HELPER"
-    exit 1
+    HELPER="$LINEAGE_ROOT"/vendor/ev/build/tools/extract_utils.sh
+    if [ ! -f "$HELPER" ]; then
+        echo "Unable to find helper script at $HELPER"
+        exit 1
+    fi
 fi
 . "$HELPER"
 
@@ -100,7 +93,8 @@ if  [ "$SETUP_BOARD_COMMON_DIR" -eq 1 ]; then
    setup_vendor "$BOARD_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
 
    # Copyright headers and guards
-   write_headers "$DEVICES_ALL"
+   write_headers $VENDOR BOARD_VENDOR
+   write_headers "$PLATFORMS" TARGET_BOARD_PLATFORM
 
    write_makefiles "$MY_DIR"/proprietary-files.txt
 
