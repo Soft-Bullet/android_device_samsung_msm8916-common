@@ -154,4 +154,7 @@
         <item>LPP_PROFILE=0</item>
     </string-array>
 
+    <!-- True if the firmware supports Wi-Fi link probing -->
+    <bool name="config_wifi_link_probing_supported">true</bool>
+
 </resources>
