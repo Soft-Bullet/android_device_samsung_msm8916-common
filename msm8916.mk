@@ -199,6 +199,7 @@ TARGET_EXCLUDES_AUDIOFX := true
 
 # FM
 PRODUCT_PACKAGES += \
+    qcom.fmradio \
     FMRadio
 
 # FM
