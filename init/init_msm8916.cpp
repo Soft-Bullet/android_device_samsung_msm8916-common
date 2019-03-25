@@ -149,13 +149,14 @@ void set_fingerprint()
 		device.c_str(), device.c_str(), release_version.c_str(), build_id.c_str(),
 		incremental_version.c_str(), build_type.c_str(), build_tags.c_str());
 
-	property_override_dual("ro.build.fingerprint", "ro.boot.fingerprint", new_fingerprint);
+        property_override("ro.boot.fingerprint", new_fingerprint);
+	property_override_dual("ro.build.fingerprint", "ro.vendor.build.fingerprint", new_fingerprint);
 }
 
 void set_target_properties(const char *device, const char *model)
 {
-	property_override_dual("ro.product.device", "ro.product.vendor.model", device);
-	property_override_dual("ro.product.model", "ro.product.vendor.device", model);
+	property_override_dual("ro.product.device", "ro.vendor.product.model", device);
+	property_override_dual("ro.product.model", "ro.vendor.product.device", model);
 
 	android::init::property_set("ro.ril.telephony.mqanelements", "6");
 
