@@ -48,21 +48,17 @@ vendor/lib/libmmcamera_faceproc.so|8e6a95d0dd0d282f96cc905c11c1a738
 
 # DRM
 bin/qcom-system-daemon
-lib/libdrmdecrypt.so
 lib/libhdcp2.so
 vendor/lib/libmmQSM.so
 vendor/lib/libmmrtpdecoder.so
 vendor/lib/librpmb.so
 vendor/lib/libssd.so
 vendor/lib/liboemcrypto.so
-vendor/lib/drm/libdrmprplugin.so
 vendor/lib/libdrmfs.so
 vendor/lib/libdrmtime.so
 vendor/lib/libprdrmdecrypt.so
 vendor/lib/libtzdrmgenprov.so
 vendor/lib/libtzplayready.so
-vendor/lib/mediadrm/libprmediadrmdecrypt.so
-vendor/lib/mediadrm/libprmediadrmplugin.so
 
 # FM
 bin/fmconfig
