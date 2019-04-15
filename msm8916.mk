@@ -21,6 +21,9 @@ $(call inherit-product-if-exists, device/samsung/qcom-common/qcom-common.mk)
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay
 
+# Enable updating of APEXes
+$(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
+
 # Assistant
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opa.eligible_device=true
