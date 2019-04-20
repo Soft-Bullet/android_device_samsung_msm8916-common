@@ -249,7 +249,7 @@ ifeq ($(RECOVERY_VARIANT),twrp)
 endif
 
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+include device/qcom/sepolicy-legacy/sepolicy.mk
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
