@@ -131,8 +131,8 @@ void set_wifi_properties()
 
 void set_target_properties(const char *device, const char *model)
 {
-	property_override_dual("ro.product.device", "ro.vendor.product.model", device);
-	property_override_dual("ro.product.model", "ro.vendor.product.device", model);
+	property_override_dual("ro.product.device", "ro.product.vendor.model", device);
+	property_override_dual("ro.product.model", "ro.product.vendor.device", model);
 
 	android::init::property_set("ro.ril.telephony.mqanelements", "6");
 
