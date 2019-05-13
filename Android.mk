@@ -57,6 +57,33 @@ $(KM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 
 ALL_DEFAULT_INSTALLED_MODULES += $(KM_SYMLINKS)
 
+# MCpay
+MCP_IMAGES := \
+	mcpay.b00 mcpay.b01 mcpay.b02 mcpay.b03 mcpay.mdt
+
+MCP_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MCP_IMAGES)))
+$(MCP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "MCP firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(MCP_SYMLINKS)
+
+# MLdap
+MLD_IMAGES := \
+	mldap.b00 mldap.b01 mldap.b02 mldap.b03 mldap.mdt
+
+MLD_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(MLD_IMAGES)))
+$(MLD_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "MCP firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(MLD_SYMLINKS)
+
+
 MODEM_IMAGES := \
     modem.b00 modem.b01 modem.b02 modem.b03 modem.b04 \
     modem.b05 modem.b06 modem.b07 modem.b08 modem.b09 \
@@ -86,6 +113,111 @@ $(PLAYREADY_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
 	$(hide) ln -sf /firmware/image/$(notdir $@) $@
 
 ALL_DEFAULT_INSTALLED_MODULES += $(PLAYREADY_SYMLINKS)
+
+# Prov
+PROV_IMAGES := \
+	prov.b00 prov.b01 prov.b02 prov.b03 prov.mtd \
+
+PROV_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(PROV_IMAGES)))
+$(PROV_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Prov firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(PROV_SYMLINKS)
+
+# SECstor
+SECSTOR_IMAGES := \
+	sec_stor.b00 sec_stor.b01 sec_stor.b02 sec_stor.b03 sec_stor.mdt
+
+SECSTOR_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(SECSTOR_IMAGES)))
+$(SECSTOR_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Secstor firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(SECSTOR_SYMLINKS)
+
+# Reactive
+REACT_IMAGES := \
+	reactive.b00 reactive.b01 reactive.b02 reactive.b03 reactive.mdt
+
+REACT_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(REACT_IMAGES)))
+$(REACT_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "Reactive firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(REACT_SYMLINKS)
+
+# SKM
+SKM_IMAGES := \
+	skm.b00 skm.b01 skm.b02 skm.b03 skm.mdt
+
+SKM_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(SKM_IMAGES)))
+$(SKM_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "SKM firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(SKM_SYMLINKS)
+
+# SSHDcap
+SSHDCPAP_IMAGES := \
+	sshdcpap.b00 sshdcpap.b01 sshdcpap.b02 sshdcpap.b03 sshdcpap.mdt
+
+SSHDCPAP_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(SSHDCPAP_IMAGES)))
+$(SSHDCPAP_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "SSHDCPAP firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(SSHDCPAP_SYMLINKS)
+
+# Tbase
+TBASE_IMAGES := \
+	tbase.b00 tbase.b01 tbase.b02 tbase.b03 tbase.mdt
+
+TBASE_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(TBASE_IMAGES)))
+$(TBASE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "TBase firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(TBASE_SYMLINKS)
+
+# TZ
+TZ_IMAGES := \
+	tz_ccm.b00 tz_ccm.b01 tz_ccm.b02 tz_ccm.b03 tz_ccm.mdt \
+	tz_otp.b00 tz_otp.b01 tz_otp.b02 tz_otp.b03 tz_otp.mdt
+
+TZ_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(TZ_IMAGES)))
+$(TZ_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "tz firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(TZ_SYMLINKS)
+
+# AiO /firmware
+FIRMWARE_IMAGES := \
+	skmm_ta.b00 skmm_ta.b01 skmm_ta.b02 skmm_ta.b03 skmm_ta.mdt
+
+FIRMWARE_SYMLINKS := $(addprefix $(TARGET_OUT_ETC)/firmware/,$(notdir $(FIRMWARE_IMAGES)))
+$(FIRMWARE_SYMLINKS): $(LOCAL_INSTALLED_MODULE)
+	@echo "SKMM Firmware link: $@"
+	@mkdir -p $(dir $@)
+	@rm -rf $@
+	$(hide) ln -sf /firmware/image/$(notdir $@) $@
+
+ALL_DEFAULT_INSTALLED_MODULES += $(FIRMWARE_SYMLINKS)
 
 WCNSS_IMAGES := \
     wcnss.b00 wcnss.b01 wcnss.b02 wcnss.b03 wcnss.b04 wcnss.b04 \
