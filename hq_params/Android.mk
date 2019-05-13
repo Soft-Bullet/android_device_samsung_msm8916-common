@@ -15,6 +15,8 @@
 #
 
 ifeq ($(TARGET_PROVIDES_WCNSS_QMI),true)
+ifneq ($(filter msm8916 msm8939,$(TARGET_BOARD_PLATFORM_VARIANT)),)
+
 
 LOCAL_PATH := $(call my-dir)
 
@@ -32,4 +34,5 @@ LOCAL_MODULE := libwcnss_qmi
 
 include $(BUILD_SHARED_LIBRARY)
 
+endif
 endif
