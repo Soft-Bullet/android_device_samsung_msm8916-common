@@ -227,6 +227,11 @@ PRODUCT_PACKAGES += \
     android.hardware.vibrator@1.0-impl \
     android.hardware.vibrator@1.0-service
 
+# HIDL vendor support
+PRODUCT_PACKAGES += \
+    android.hidl.base@1.0 \
+    android.hidl.manager@1.0
+
 # Wi-Fi
 PRODUCT_PACKAGES += \
     libwcnss_qmi \
