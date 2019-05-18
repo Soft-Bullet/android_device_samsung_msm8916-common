@@ -149,7 +149,13 @@ BOARD_USES_QCOM_HARDWARE := true
 
 # Radio
 MALLOC_SVELTE := true
-TARGET_RIL_VARIANT := caf
+#TARGET_RIL_VARIANT := caf
+
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
+    /system/vendor/bin/hw/rild=27
+
+BOARD_PROVIDES_LIBRIL := true
+TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
 
 # Recovery
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
@@ -167,7 +173,9 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib64/libflp.so|libshims_flp.so \
     /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
     /system/vendor/lib/libflp.so|libshims_flp.so \
-    /system/vendor/lib/libizat_core.so|libshims_get_process_name.so
+    /system/vendor/lib/libizat_core.so|libshims_get_process_name.so \
+    /system/vendor/lib/libsec-ril.so|libshim_secril.so \
+    /system/vendor/lib/libsec-ril-dsds.so|libshim_secril.so
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
