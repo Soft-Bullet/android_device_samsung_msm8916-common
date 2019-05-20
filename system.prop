@@ -66,6 +66,9 @@ ro.frp.pst=/dev/block/bootdevice/by-name/hidden
 # Media
 debug.stagefright.omx_default_rank.sw-audio=1
 debug.stagefright.omx_default_rank=0
+debug.stagefright.ccodec=0
+mm.enable.sec.smoothstreaming=true
+mm.enable.smoothstreaming=true
 drm.service.enabled=1
 vidc.enc.narrow.searchrange=1
 
