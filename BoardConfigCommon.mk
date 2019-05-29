@@ -198,9 +198,6 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /vendor/bin/hw/rild=27
 
 # Power
-TARGET_HAS_LEGACY_POWER_STATS := true
-TARGET_HAS_NO_POWER_STATS := true
-TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
 
 # Protobuf
@@ -258,8 +255,6 @@ BOARD_SEPOLICY_DIRS += \
 TARGET_LD_SHIM_LIBS := \
     /system/lib/libui.so|libui_shim.so \
     /vendor/lib/libmmjpeg_interface.so|libboringssl-compat.so \
-    /vendor/lib/libsec-ril.so|libshim_secril.so \
-    /vendor/lib/libsec-ril-dsds.so|libshim_secril.so \
     /vendor/lib/hw/camera.vendor.msm8916.so|libcamera_shim.so \
     /vendor/lib/libizat_core.so|libshim_gps.so \
     /vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so

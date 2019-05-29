@@ -396,7 +396,6 @@ PRODUCT_PACKAGES += \
 # Radio
 PRODUCT_PACKAGES += \
     libsecnativefeature \
-    libshim_secril \
     libxml2 \
     macloader \
 
@@ -409,9 +408,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Ramdisk
 PRODUCT_PACKAGES += \
     fstab.qcom \
-    init.carrier.rc \
     init.class_main.sh \
-    init.link_ril_db.sh \
     init.qcom.early_boot.sh \
     init.qcom.fm.sh \
     init.qcom.post_boot.sh \
@@ -438,18 +435,17 @@ PRODUCT_COPY_FILES += \
 
 # RIL
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.rild.nitz_long_ons_0="" \
-    persist.rild.nitz_long_ons_1="" \
-    persist.rild.nitz_long_ons_2="" \
-    persist.rild.nitz_long_ons_3="" \
-    persist.rild.nitz_plmn="" \
-    persist.rild.nitz_short_ons_0="" \
-    persist.rild.nitz_short_ons_1="" \
-    persist.rild.nitz_short_ons_2="" \
-    persist.rild.nitz_short_ons_3="" \
+    ro.telephony.call_ring.multiple=false \
+    rild.libpath=/system/vendor/lib/libsec-ril.so \
+    rild.libpath2=/system/vendor/lib/libsec-ril-dsds.so \
+    ro.config.always_show_roaming=true \
+    persist.radio.rat_on=combine \
+    ro.ril.transmitpower=true \
+    persist.radio.no_wait_for_card=1 \
+    persist.radio.use_se_table_only=1 \
+    keyguard.no_require_sim=true \
     ril.subscription.types=NV,RUIM \
     DEVICE_PROVISIONED=1 \
-    rild.libpath=/system/lib/libsec-ril.so \
     ro.multisim.set_audio_params=true
 
 # SAMP SPCM
