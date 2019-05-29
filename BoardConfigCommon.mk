@@ -150,9 +150,12 @@ BOARD_USES_QCOM_HARDWARE := true
 # Radio
 MALLOC_SVELTE := true
 #TARGET_RIL_VARIANT := caf
+PROTOBUF_SUPPORTED := true
+TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
 
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
-    /system/vendor/bin/hw/rild=27
+    /vendor/bin/hw/rild=27 \
+    /system/vendor/bin/hw/rild=27 
 
 BOARD_PROVIDES_LIBRIL := true
 TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
