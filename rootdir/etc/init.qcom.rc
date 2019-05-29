@@ -75,6 +75,10 @@ on post-fs-data
     mkdir /data/tombstones/wcnss 0771 system system
     mkdir /data/tombstones/dsps 0771 system system
 
+    # RIL LINK
+    rm -rf /data/data/com.android.providers.telephony/databases
+    rm -rf /data/data/com.android.providers.telephony/shared_prefs
+
     setprop vold.post_fs_data_done 1
 
 on early-boot
@@ -152,6 +156,11 @@ on boot
     chown system graphics /sys/class/graphics/fb0/modes
     chmod 0664 /sys/class/graphics/fb0/modes
 
+on property:dev.bootcomplete=1
+    # Symlink directories to access telephony.db required by RIL
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+
 service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
     class main
     user root
@@ -219,11 +228,16 @@ service wpa_supplicant /vendor/bin/hw/wpa_supplicant \
     disabled
     oneshot
 
-service ril-daemon2 /vendor/bin/hw/rild -c 2
+# RIL for multi rild
+service ril-daemon2 /vendor/bin/hw/rild -l /vendor/lib/libsec-ril-dsds.so -c 2
     class main
     user radio
+    disabled
     group radio cache inet misc audio log readproc wakelock
     capabilities BLOCK_SUSPEND NET_ADMIN NET_RAW
+
+on property:ro.multisim.simslotcount=2
+    start ril-daemon2
 
 service charger /charger
     class charger
