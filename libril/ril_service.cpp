@@ -3255,8 +3255,15 @@ int radio::getLastCallFailCauseResponse(int slotId,
             int *pInt = (int *) response;
             info.causeCode = (LastCallFailCause) pInt[0];
         } else {
-            RLOGE("getCurrentCallsResponse Invalid response: NULL");
-            if (e == RIL_E_SUCCESS) responseInfo.error = RadioError::INVALID_RESPONSE;
+            //RLOGE("getCurrentCallsResponse Invalid response");
+            RLOGE("getCurrentCallsResponse Try to get by samsung method");
+            RLOGE("getCurrentCallsResponse response size=%d",responseLen);
+
+            int *pInt = (int *) response;
+            info.causeCode = (LastCallFailCause) pInt[0];
+
+            char *pStr = (char *) ((int *)response + 2);
+            info.vendorCause = convertCharPtrToHidlString(pStr);
         }
 
         Return<void> retStatus = radioService[slotId]->mRadioResponse->getLastCallFailCauseResponse(
@@ -4591,6 +4598,7 @@ int radio::setSuppServiceNotificationsResponse(int slotId,
 
     if (radioService[slotId]->mRadioResponse != NULL) {
         RadioResponseInfo responseInfo = {};
+        e = (RIL_Errno) 0; //our device not support this
         populateResponseInfo(responseInfo, serial, responseType, e);
         Return<void> retStatus
                 = radioService[slotId]->mRadioResponse->setSuppServiceNotificationsResponse(
@@ -7200,6 +7208,9 @@ int radio::suppSvcNotifyInd(int slotId, int indicationType,
         suppSvc.index = ssn->index;
         suppSvc.type = ssn->type;
         suppSvc.number = convertCharPtrToHidlString(ssn->number);
+
+        RLOGE("suppSvcNotifyInd: isMT %d code %d index %d type %d",
+                suppSvc.isMT, suppSvc.code, suppSvc.index, suppSvc.type);
 
 #if VDBG
         RLOGD("suppSvcNotifyInd: isMT %d code %d index %d type %d",
