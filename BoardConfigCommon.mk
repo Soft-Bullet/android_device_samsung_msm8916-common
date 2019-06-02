@@ -78,6 +78,8 @@ endif
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_QCOM := true
+QCOM_BT_USE_BTNV := true
+BLUETOOTH_HCI_USE_MCT := true
 
 # Camera
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
