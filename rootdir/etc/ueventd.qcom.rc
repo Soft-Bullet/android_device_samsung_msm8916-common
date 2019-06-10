@@ -269,5 +269,36 @@
 /sys/devices/virtual/input/input* rept_z                      0660    input      system
 /sys/devices/virtual/input/input* test                        0660    input      system
 
+# Display / LiveDisplay
+/sys/class/lcd/panel            power_reduce                0660 system system
+/sys/class/lcd/panel            contrast                    0660 system system
+/sys/class/lcd/panel            hmt_bright                  0660 system system
+/sys/class/lcd/panel            hmt_low_persistence         0660 system system
+/sys/class/lcd/panel            hmt_on                      0660 system system
+/sys/class/lcd/panel            manufacture_code            0660 system system
+/sys/class/lcd/panel            manufacture_date            0660 system system
+/sys/class/lcd/panel            max_contrast                0660 system system
+/sys/class/lcd/panel            partial_disp                0660 system system
+/sys/class/lcd/panel            temperature                 0660 system system
+/sys/class/lcd/panel            tuning                      0660 system system
+/sys/class/lcd/panel            alpm_backlight              0660 system system
+/sys/class/lcd/panel            alpm                        0660 system system
+/sys/class/mdnie/mdnie          mode                        0660 system system
+/sys/class/mdnie/mdnie          mode_max                    0660 system system
+/sys/class/mdnie/mdnie          accessibility               0660 system system
+/sys/class/mdnie/mdnie          accessibility_max           0660 system system
+/sys/class/mdnie/mdnie          outdoor                     0660 system system
+/sys/class/mdnie/mdnie          outdoor_max                 0660 system system
+/sys/class/mdnie/mdnie          hmt_color_temperature       0660 system system
+/sys/class/mdnie/mdnie          scenario                    0660 system system
+/sys/class/mdnie/mdnie          scenario_max                0660 system system
+/sys/class/mdnie/mdnie          sensorRGB                   0660 system system
+/sys/class/lcd/panel/panel      actual_brightness           0660 system system
+/sys/class/lcd/panel/panel      auto_brightness             0660 system system
+/sys/class/lcd/panel/panel      bl_power                    0660 system system
+/sys/class/lcd/panel/panel      brightness                  0660 system system
+/sys/class/lcd/panel/panel      max_brightness              0660 system system
+/sys/class/lcd/panel/panel      weakness_hbm_comp           0660 system system
+
 /dev/block/platform/soc.0/7824900.sdhci/by-name/frp           0600    system     system
 /dev/block/platform/soc.0/7824900.sdhci/by-name/config        0600    system     system
