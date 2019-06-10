@@ -231,6 +231,9 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl.samsung8916 \
     android.hardware.sensors@1.0-service.samsung8916
 
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/_hals.conf:$(TARGET_COPY_OUT_VENDOR)/etc/sensors/_hals.conf
+
 # Thermal
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
