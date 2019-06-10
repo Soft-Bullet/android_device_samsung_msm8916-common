@@ -5,3 +5,9 @@
 
 # Shell files
 /system/vendor/bin/init\.qcom\.mem\.sh                                    u:object_r:qti_init_shell_exec:s0
+
+# Executeables
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung-qcom    u:object_r:hal_lineage_livedisplay_default_exec:s0
+
+# sysfs - mdnie
+/sys/devices/virtual/mdnie/mdnie(/.*)?                  u:object_r:sysfs_mdnie:s0
