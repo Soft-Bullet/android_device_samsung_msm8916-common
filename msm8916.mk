@@ -207,6 +207,13 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libxml2
 
+# Manual SIM Provision
+PRODUCT_PACKAGES += \
+    qti-telephony-common
+
+PRODUCT_BOOT_JARS += \
+    telephony-ext
+
 # Recovery
 PRODUCT_PACKAGES += \
     librecovery_updater_cm
