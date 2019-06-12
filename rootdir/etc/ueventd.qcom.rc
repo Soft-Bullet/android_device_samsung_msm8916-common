@@ -166,33 +166,42 @@
 /dev/tsc_ci0              0660   media       media
 
 # sensors
-/dev/yl_alsprox_sensor                                             0660    system   system
-/dev/yl_params1                                                    0660    system   system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable         0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            poll_delay     0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable_wakeup  0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            max_latency    0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            flush          0660    input    system
-/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            calibrate      0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            accel_enable   0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            accel_delay    0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            calibration    0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            debug          0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            device_delay   0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable_als_sensor 0660 input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable_ps_sensor  0660 input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            gyro_enable    0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            gyro_delay     0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            ps_calibration 0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            reg            0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable         0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            poll_delay     0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable_wakeup  0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            max_latency    0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            flush          0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            calibrate      0660    input    system
-/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            chip_id        0660    input    system
+/sys/devices/virtual/input/input*                   poll           0660    input    system
+/sys/devices/virtual/input/input*                   pollrate_ms    0660    input    system
+/sys/devices/virtual/input/input*                   name           0660    input    system
+/sys/devices/virtual/input/input*                   phys           0660    input    system
+/sys/devices/virtual/input/input*                   properties     0660    input    system
+/sys/devices/virtual/input/input*                   uevent         0660    input    system
+/sys/devices/virtual/input/input*                   uniq           0660    input    system
+/sys/devices/virtual/input/input*                   enable         0660    input    system
 
+/sys/class/sensors/*     enable             0660    input    system
+/sys/class/sensors/*     calibration        0660    input    system
+/sys/class/sensors/*     delay              0660    input    system
+/sys/class/sensors/*     lowpassfilter      0660    input    system
+/sys/class/sensors/*     name               0660    input    system
+/sys/class/sensors/*     raw_data           0660    input    system
+/sys/class/sensors/*     reactive_alert     0660    input    system
+/sys/class/sensors/*     uevent             0660    input    system
+/sys/class/sensors/*     vendor             0660    input    system
+/sys/class/sensors/*     lux                0660    input    system
+/sys/class/sensors/*     prox_avg           0660    input    system
+/sys/class/sensors/*     prox_cal           0660    input    system
+/sys/class/sensors/*     prox_offset_pass   0660    input    system
+/sys/class/sensors/*     resolution         0660    input    system
+/sys/class/sensors/*     state              0660    input    system
+/sys/class/sensors/*     chip_id            0660    input    system
+/sys/class/sensors/*     odr                0660    input    system
+/sys/class/sensors/*     op_mode            0660    input    system
+/sys/class/sensors/*     reg                0660    input    system
+/sys/class/sensors/*     rept_xy            0660    input    system
+/sys/class/sensors/*     rept_z             0660    input    system
+/sys/class/sensors/*     selftest           0660    input    system
+/sys/class/sensors/*     status             0660    input    system
+/sys/class/sensors/*     value              0660    input    system
+/sys/class/sensors/*     place              0660    input    system
+/sys/class/sensors/*     flush              0660    input    system
+ 
 # vm_bms
 /dev/vm_bms               0660   system     system
 /dev/battery_data         0660   system     system
@@ -212,62 +221,6 @@
 
 # ESOC devices
 /dev/subsys_esoc*         0640   system     radio
-
-#BST
-/sys/devices/virtual/input/input* range                       0660    input      system
-/sys/devices/virtual/input/input* bandwidth                   0660    input      system
-/sys/devices/virtual/input/input* op_mode                     0660    input      system
-/sys/devices/virtual/input/input* delay                       0660    input      system
-/sys/devices/virtual/input/input* SleepDur                    0660    input      system
-/sys/devices/virtual/input/input* fast_calibration_x          0660    input      system
-/sys/devices/virtual/input/input* fast_calibration_y          0660    input      system
-/sys/devices/virtual/input/input* fast_calibration_z          0660    input      system
-/sys/devices/virtual/input/input* fifo_overrun                0660    input      system
-/sys/devices/virtual/input/input* fifo_data_frame             0660    input      system
-/sys/devices/virtual/input/input* fifo_mode                   0660    input      system
-/sys/devices/virtual/input/input* fifo_trig                   0660    input      system
-/sys/devices/virtual/input/input* fifo_framecount             0660    input      system
-/sys/devices/virtual/input/input* fifo_data_sel               0660    input      system
-/sys/devices/virtual/input/input* reg                         0660    input      system
-/sys/devices/virtual/input/input* offset_x                    0660    input      system
-/sys/devices/virtual/input/input* offset_y                    0660    input      system
-/sys/devices/virtual/input/input* offset_z                    0660    input      system
-/sys/devices/virtual/input/input* enable_int                  0660    input      system
-/sys/devices/virtual/input/input* int_mode                    0660    input      system
-/sys/devices/virtual/input/input* slope_duration              0660    input      system
-/sys/devices/virtual/input/input* slope_threshold             0660    input      system
-/sys/devices/virtual/input/input* slope_no_mot_duration       0660    input      system
-/sys/devices/virtual/input/input* slope_no_mot_threshold      0660    input      system
-/sys/devices/virtual/input/input* high_g_duration             0660    input      system
-/sys/devices/virtual/input/input* high_g_threshold            0660    input      system
-/sys/devices/virtual/input/input* low_g_duration              0660    input      system
-/sys/devices/virtual/input/input* low_g_threshold             0660    input      system
-/sys/devices/virtual/input/input* tap_duration                0660    input      system
-/sys/devices/virtual/input/input* tap_threshold               0660    input      system
-/sys/devices/virtual/input/input* tap_quiet                   0660    input      system
-/sys/devices/virtual/input/input* tap_shock                   0660    input      system
-/sys/devices/virtual/input/input* tap_samp                    0660    input      system
-/sys/devices/virtual/input/input* orient_mode                 0660    input      system
-/sys/devices/virtual/input/input* orient_blocking             0660    input      system
-/sys/devices/virtual/input/input* orient_hyst                 0660    input      system
-/sys/devices/virtual/input/input* orient_theta                0660    input      system
-/sys/devices/virtual/input/input* flat_theta                  0660    input      system
-/sys/devices/virtual/input/input* flat_hold_time              0660    input      system
-/sys/devices/virtual/input/input* selftest                    0660    input      system
-/sys/devices/virtual/input/input* softreset                   0660    input      system
-/sys/devices/virtual/input/input* en_sig_motion               0660    input      system
-/sys/devices/virtual/input/input* tap_time_period             0660    input      system
-/sys/devices/virtual/input/input* en_double_tap               0660    input      system
-
-/sys/devices/virtual/input/input* fastoffset_en               0660    input      system
-/sys/devices/virtual/input/input* slowoffset_en               0660    input      system
-/sys/devices/virtual/input/input* sleepdur                    0660    input      system
-/sys/devices/virtual/input/input* autosleepdur                0660    input      system
-/sys/devices/virtual/input/input* fifo_tag                    0660    input      system
-/sys/devices/virtual/input/input* odr                         0660    input      system
-/sys/devices/virtual/input/input* rept_xy                     0660    input      system
-/sys/devices/virtual/input/input* rept_z                      0660    input      system
-/sys/devices/virtual/input/input* test                        0660    input      system
 
 # Display / LiveDisplay
 /sys/class/lcd/panel            power_reduce                0660 system system
