@@ -31,12 +31,12 @@ LOG_NAME="${0}:"
 
 loge ()
 {
-  /system/vendor/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
+  /vendor/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
 }
 
 logi ()
 {
-  /system/vendor/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
+  /vendor/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
 }
 
 failed ()
@@ -50,6 +50,10 @@ POWER_CLASS=`getprop qcom.bt.dev_power_class`
 LE_POWER_CLASS=`getprop qcom.bt.le_dev_pwr_class`
 
 setprop vendor.bluetooth.status off
+
+#load bd addr
+BDADDR=`getprop persist.service.bdroid.bdaddr`
+logi "BDADDR: $BDADDR"
 
 case $POWER_CLASS in
   1) PWR_CLASS="-p 0" ;
@@ -75,15 +79,20 @@ case $LE_POWER_CLASS in
      logi "LE Power Class: To override, Before turning BT ON; setprop qcom.bt.le_dev_pwr_class <1 or 2 or 3>";;
 esac
 
-eval $(/system/vendor/bin/hci_qcomm_init -e $PWR_CLASS $LE_PWR_CLASS && echo "exit_code_hci_qcomm_init=0" || echo "exit_code_hci_qcomm_init=1")
+if [ -z "$BDADDR" ]
+then
+  /vendor/bin/hci_qcomm_init -e $PWR_CLASS $LE_PWR_CLASS -vv
+else
+  /vendor/bin/hci_qcomm_init -b $BDADDR -e $PWR_CLASS $LE_PWR_CLASS -vv
+fi
 
-case $exit_code_hci_qcomm_init in
+case $? in
   0) logi "Bluetooth QSoC firmware download succeeded, $BTS_DEVICE $BTS_TYPE $BTS_BAUD $BTS_ADDRESS";;
-  *) failed "Bluetooth QSoC firmware download failed" $exit_code_hci_qcomm_init;
+  *) failed "Bluetooth QSoC firmware download failed" $?;
 
      setprop vendor.bluetooth.status off
 
-     exit $exit_code_hci_qcomm_init;;
+     exit $?;;
 esac
 
 setprop vendor.bluetooth.status on
