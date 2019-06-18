@@ -86,6 +86,9 @@ BOARD_HAVE_BLUETOOTH_QCOM := true
 QCOM_BT_USE_BTNV := true
 BLUETOOTH_HCI_USE_MCT := true
 
+# Boot animation
+TARGET_BOOTANIMATION_HALF_RES := true
+
 # Camera
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/vendor/bin/mm-qcamera-daemon=23
