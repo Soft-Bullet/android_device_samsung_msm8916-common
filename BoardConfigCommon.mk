@@ -200,9 +200,6 @@ BOARD_SEPOLICY_DIRS += \
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /system/vendor/lib64/libflp.so|libshims_flp.so \
-    /system/vendor/lib64/libizat_core.so|libshims_get_process_name.so \
-    /system/vendor/lib/libflp.so|libshims_flp.so \
     /system/vendor/lib/libizat_core.so|libshims_get_process_name.so \
     /system/vendor/lib/libsec-ril.so|libshim_secril.so \
     /system/vendor/lib/libsec-ril-dsds.so|libshim_secril.so
