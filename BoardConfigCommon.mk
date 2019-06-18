@@ -185,7 +185,7 @@ TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
 
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /vendor/bin/hw/rild=27 \
-    /system/vendor/bin/hw/rild=27 
+    /system/vendor/bin/hw/rild=27
 
 BOARD_PROVIDES_LIBRIL := true
 TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
@@ -197,11 +197,6 @@ TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
 include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
     $(PLATFORM_PATH)/sepolicy
-
-# Shims
-TARGET_LD_SHIM_LIBS := \
-    /system/vendor/lib/libsec-ril.so|libshim_secril.so \
-    /system/vendor/lib/libsec-ril-dsds.so|libshim_secril.so
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
