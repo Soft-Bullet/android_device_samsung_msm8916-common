@@ -91,7 +91,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.bluetooth.hfp.ver=1.7 \
     ro.bluetooth.sap=true \
     ro.qualcomm.bt.hci_transport=smd \
-    vendor.qcom.bluetooth.soc=pronto
+    vendor.qcom.bluetooth.soc=pronto \
+    vendor.bluetooth.soc=pronto
 
 # BoringSSL Hacks
 PRODUCT_PACKAGES += \
