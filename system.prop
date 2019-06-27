@@ -2,12 +2,23 @@
 af.fast_track_multiplier=1
 audio.deep_buffer.media=true
 audio.offload.min.duration.secs=30
+audio.offload.buffer.size.kb=32
+audio.offload.pcm.16bit.enable=true
+audio.offload.pcm.24bit.enable=true
 audio.offload.video=true
 vendor.audio.av.streaming.offload.enable=true
 vendor.audio.offload.buffer.size.kb=64
-vendor.audio.offload.gapless.enabled=true
+vendor.audio.offload.gapless.enabled=false
+vendor.audio.offload.multiple.enabled=false
 vendor.audio_hal.period_size=192
-vendor.voice.path.for.pcm.voip=true
+vendor.dedicated.device.for.voip=true
+vendor.voice.path.for.pcm.voip=false
+av.offload.enable=true
+
+persist.vendor.audio.fluence.speaker=true
+persist.vendor.audio.fluence.voicecall=true
+persist.vendor.audio.fluence.voicerec=false
+ro.vendor.audio.sdk.fluencetype=fluence
 
 ro.config.media_vol_steps=25
 ro.config.vc_call_vol_steps=7
@@ -31,6 +42,12 @@ debug.enable.sglscale=1
 # Data services
 persist.data.netmgrd.qos.enable=false
 ro.use_data_netmgrd=false
+
+# GPS
+persist.gps.qc_nlp_in_use=0
+ro.gps.agps_provider=1
+ro.qc.sdk.izat.premium_enabled=0
+ro.qc.sdk.izat.service_mask=0x0
 
 # Other
 ro.oem_unlock_supported=0
