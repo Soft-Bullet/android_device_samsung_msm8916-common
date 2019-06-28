@@ -7,7 +7,13 @@
 /system/vendor/bin/init\.qcom\.mem\.sh                                    u:object_r:qti_init_shell_exec:s0
 
 # Executeables
-/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung-qcom    u:object_r:hal_lineage_livedisplay_default_exec:s0
+/(vendor|system/vendor)/bin/hw/vendor\.lineage\.livedisplay@2\.0-service\.samsung-qcom    u:object_r:hal_lineage_livedisplay_sysfs_exec:s0
+
+# sysfs - graphics/panel
+/sys/class/mhl(/.*)?                                    u:object_r:sysfs_graphics:s0
+/sys/devices/mdp\.[0-9](/.*)?                           u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/graphics/fb0/csc_cfg               u:object_r:sysfs_graphics:s0
+/sys/devices/virtual/lcd/panel(/.*)?                    u:object_r:sysfs_graphics:s0
 
 # sysfs - mdnie
 /sys/devices/virtual/mdnie/mdnie(/.*)?                  u:object_r:sysfs_mdnie:s0
