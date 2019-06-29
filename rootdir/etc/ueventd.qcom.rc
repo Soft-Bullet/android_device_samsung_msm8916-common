@@ -206,6 +206,13 @@
 /dev/vm_bms               0660   system     system
 /dev/battery_data         0660   system     system
 
+# vibrator
+/sys/devices/virtual/timed_output/vibrator   pwm_default     0660    system    system
+/sys/devices/virtual/timed_output/vibrator   pwm_min         0660    system    system
+/sys/devices/virtual/timed_output/vibrator   pwm_max         0660    system    system
+/sys/devices/virtual/timed_output/vibrator   pwm_threshold   0660    system    system
+/sys/devices/virtual/timed_output/vibrator   pwm_value       0660    system    system
+
 # wlan
 /dev/wcnss_wlan           0660   system     system
 /dev/wcnss_ctrl           0660   system     system
@@ -249,12 +256,12 @@
 /sys/class/mdnie/mdnie          scenario                    0660 system system
 /sys/class/mdnie/mdnie          scenario_max                0660 system system
 /sys/class/mdnie/mdnie          sensorRGB                   0660 system system
-/sys/class/lcd/panel/panel      actual_brightness           0660 system system
-/sys/class/lcd/panel/panel      auto_brightness             0660 system system
-/sys/class/lcd/panel/panel      bl_power                    0660 system system
-/sys/class/lcd/panel/panel      brightness                  0660 system system
-/sys/class/lcd/panel/panel      max_brightness              0660 system system
-/sys/class/lcd/panel/panel      weakness_hbm_comp           0660 system system
+/sys/devices/virtual/lcd/panel/panel   actual_brightness    0660 system system
+/sys/devices/virtual/lcd/panel/panel   auto_brightness      0660 system system
+/sys/devices/virtual/lcd/panel/panel   bl_power             0660 system system
+/sys/devices/virtual/lcd/panel/panel   brightness           0660 system system
+/sys/devices/virtual/lcd/panel/panel   max_brightness       0660 system system
+/sys/devices/virtual/lcd/panel/panel   weakness_hbm_comp    0660 system system
 
 /dev/block/platform/soc.0/7824900.sdhci/by-name/frp           0600    system     system
 /dev/block/platform/soc.0/7824900.sdhci/by-name/config        0600    system     system
