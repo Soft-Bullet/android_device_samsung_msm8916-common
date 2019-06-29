@@ -45,6 +45,7 @@
 /sys/devices/virtual/sec/sec_touchkey(/.*)?             u:object_r:sysfs_sec_touchkey:s0
 /sys/devices/virtual/sec/switch(/.*)?                   u:object_r:sysfs_sec_switch:s0
 /sys/devices/virtual/sec/tsp(/.*)?                      u:object_r:sysfs_sec_tsp:s0
+/proc/simslot_count                                     u:object_r:proc_sec_simslot:s0
 
 # block devices
 /dev/block/platform/msm_sdcc\.1/by-name/efs             u:object_r:efs_block_device:s0
