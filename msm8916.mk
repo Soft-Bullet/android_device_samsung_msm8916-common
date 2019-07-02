@@ -322,7 +322,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.swhevccodectype=0 \
     mm.enable.qcom_parser=3183219 \
     mm.enable.smoothstreaming=true \
-    mmp.enable.3g2=true
+    mmp.enable.3g2=true \
+    debug.stagefright.omx_default_rank.sw-audio=1 \
+    debug.stagefright.omx_default_rank=0
 
 ifeq ($(TARGET_HAS_LEGACY_CAMERA_HAL1),true)
 PRODUCT_PROPERTY_OVERRIDES += \
