@@ -44,4 +44,4 @@ allow init {
     sysfs_thermal
 }:file w_file_perms;
 
-allow init proc_sec_simslot r_file_perms;
+allow init proc_sec_simslot:file r_file_perms;
