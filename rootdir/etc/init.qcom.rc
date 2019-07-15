@@ -499,8 +499,8 @@ on post-fs-data
     mkdir /data/misc/qti-logkit/logdata/ 2750 system shell
 
     # RIL LINK
-    rm -rf /data/data/com.android.providers.telephony/databases
-    rm -rf /data/data/com.android.providers.telephony/shared_prefs
+    rm /data/data/com.android.providers.telephony/databases
+    rm /data/data/com.android.providers.telephony/shared_prefs
 
     setprop vold.post_fs_data_done 1
 
@@ -614,6 +614,8 @@ on property:dev.bootcomplete=1
 # Symlink directories to access telephony.db required by RIL
 symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
 symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+restorecon /data/data/com.android.providers.telephony/databases
+restorecon /data/data/com.android.providers.telephony/shared_prefs
 
 service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
     class main
