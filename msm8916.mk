@@ -214,7 +214,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     debug.composition.type=c2d \
     debug.egl.hw=1 \
     debug.sf.hw=1 \
-    debug.hwui.use_buffer_age=false
+    debug.hwui.use_buffer_age=false \
+    debug.sf.enable_gl_backpressure=1
+
 
 # GPS Configs
 PRODUCT_COPY_FILES += \
