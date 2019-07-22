@@ -39,6 +39,7 @@ debug.mdpcomp.idletime=600
 persist.hwc.mdpcomp.enable=true
 persist.hwc.ptor.enable=true
 debug.enable.sglscale=1
+debug.sf.enable_gl_backpressure=1
 
 # Data services
 persist.data.netmgrd.qos.enable=false
