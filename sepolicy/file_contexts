@@ -28,6 +28,8 @@
 /sys/devices/battery\.[0-9]+/power_supply(/.*)?         u:object_r:sysfs_batteryinfo:s0
 /sys/devices/i2c\.[0-9]+/i2c-[0-9]+/[0-9]+-[a-z0-9]+/max[a-z0-9]+-charger/power_supply(/.*)? u:object_r:sysfs_batteryinfo:s0
 /sys/devices/i2c\.[0-9]+/i2c-[0-9]+/[0-9]+-[a-z0-9]+/power_supply(/.*)?                      u:object_r:sysfs_batteryinfo:s0
+/sys/devices/soc\.0/i2c\.[0-9]+/i2c-[0-9]+/[0-9]+-[a-z0-9]+/[a-z0-9]+-charger/power_supply(/.*)?   u:object_r:sysfs_batteryinfo:s0
+/sys/devices/soc\.0/i2c\.[0-9]+/i2c-[0-9]+/[0-9]+-[a-z0-9]+/power_supply/[a-z0-9]+-fuelgauge(/.*)? u:object_r:sysfs_batteryinfo:s0
 /sys/devices/soc\.0/[a-z0-9]+\.usb/power_supply(/.*)?   u:object_r:sysfs_batteryinfo:s0
 /sys/devices/msm_dwc3/power_supply(/.*)?                u:object_r:sysfs_batteryinfo:s0
 
