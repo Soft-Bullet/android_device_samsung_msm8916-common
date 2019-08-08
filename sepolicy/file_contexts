@@ -19,7 +19,10 @@
 /sys/devices/battery\.[0-9]+/power_supply/battery(/.*)?                                                    u:object_r:sysfs_batteryinfo:s0
 
 # EFS
+/efs/bluetooth(/.*)?                                 u:object_r:bluetooth_efs_file:s0
+/efs/FactoryApp(/.*)?                                u:object_r:app_efs_file:s0
 /efs/imei(/.*)?                                      u:object_r:imei_efs_file:s0
+/efs/wifi(/.*)?                                      u:object_r:wifi_efs_file:s0
 
 # Macloader
 /system/bin/macloader                                u:object_r:macloader_exec:s0
@@ -29,7 +32,7 @@
 /dev/sec-nfc                                         u:object_r:nfc_device:s0
 
 # Partitions
-/dev/block/mmcblk0p13                                u:object_r:modem_efs_partition_device:s0
+/dev/block/platform/soc\.0/7824900\.sdhci/by-name/efs  u:object_r:modem_efs_partition_device:s0
 
 # RFS
 /sys/kernel/debug/rmt_storage(/.*)?                  u:object_r:rmt_storage_debugfs_file:s0
@@ -39,6 +42,3 @@
 
 # Vibrator
 /sys/devices/virtual/timed_output/vibrator(/.*)?     u:object_r:vibrator_sysfs_file:s0
-
-# Wifi
-/efs/wifi(/.*)?                                      u:object_r:wifi_efs_file:s0

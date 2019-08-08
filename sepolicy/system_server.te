@@ -1,5 +1,4 @@
-allow system_server app_efs_file:dir search;
-allow system_server efs_file:dir search;
+r_dir_file(system_server, app_efs_file)
 allow system_server vibrator_sysfs_file:dir search;
 allow system_server vibrator_sysfs_file:file rw_file_perms;
 
