@@ -17,7 +17,7 @@
 /sys/devices(/platform)?/soc\.0/78db000\.usb/power_supply(/.*)?                                            u:object_r:sysfs_batteryinfo:s0
 /sys/devices/battery\.[0-9]+/power_supply(/.*)?                                                            u:object_r:sysfs_batteryinfo:s0
 /sys/devices/battery\.[0-9]+/power_supply/battery(/.*)?                                                    u:object_r:sysfs_batteryinfo:s0
-
+/sys/devices/battery\.[0-9]+/battery(/.*)?                                                                 u:object_r:sysfs_batteryinfo:s0
 # EFS
 /efs/bluetooth(/.*)?                                 u:object_r:bluetooth_efs_file:s0
 /efs/FactoryApp(/.*)?                                u:object_r:app_efs_file:s0
