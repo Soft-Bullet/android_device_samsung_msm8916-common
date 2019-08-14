@@ -27,6 +27,9 @@
 # Macloader
 /system/bin/macloader                                u:object_r:macloader_exec:s0
 
+# mDNIe
+/sys/devices/virtual/mdnie/mdnie(/.*)?               u:object_r:sysfs_mdnie:s0
+
 # NFC
 /dev/pn547                                           u:object_r:nfc_device:s0
 /dev/sec-nfc                                         u:object_r:nfc_device:s0

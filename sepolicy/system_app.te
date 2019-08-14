@@ -1,1 +1,2 @@
+allow system_app sysfs_mdnie:file rw_file_perms;
 dontaudit system_app netd_service:service_manager find;
