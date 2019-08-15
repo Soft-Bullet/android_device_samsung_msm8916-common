@@ -288,13 +288,17 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.enable-player=true \
     media.stagefright.enable-qcp=true \
     media.stagefright.enable-scan=true \
-    media.stagefright.legacyencoder=true \
-    media.stagefright.less-secure=true \
     media.stagefright.use-awesome=true \
     media.swhevccodectype=0 \
     mm.enable.qcom_parser=3183219 \
     mm.enable.smoothstreaming=true \
     mmp.enable.3g2=true
+
+ifeq ($(TARGET_HAS_LEGACY_CAMERA_HAL1),true)
+PRODUCT_PROPERTY_OVERRIDES += \
+    media.stagefright.legacyencoder=true \
+    media.stagefright.less-secure=true
+endif
 
 # Memory optimizations
 PRODUCT_PROPERTY_OVERRIDES += \
