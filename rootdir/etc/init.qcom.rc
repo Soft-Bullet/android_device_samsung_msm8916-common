@@ -59,6 +59,8 @@ on early-boot
     setprop qcom.audio.init complete
     exec u:r:qti_init_shell:s0 -- /vendor/bin/init.qcom.early_boot.sh
 
+    setprop persist.service.bdroid.bdaddr "/efs/bluetooth/bt_addr"
+
 on boot
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/state
@@ -626,7 +628,6 @@ service qcom-c_main-sh /system/vendor/bin/init.class_main.sh
 
 on property:vold.decrypt=trigger_restart_framework
     start qcom-c_main-sh
-    start config_bt_addr
     start wcnss-service
 
 # FM enable/disable triggers
