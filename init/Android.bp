@@ -1,0 +1,29 @@
+filegroup {
+    name: "libinit_msm8916_src",
+    srcs: [
+        "init_msm8916.cpp",
+    ],
+}
+
+cc_library_headers {
+    name: "libinit_msm8916_headers",
+    recovery_available: true,
+    export_include_dirs: ["include"],
+}
+
+cc_defaults {
+    name: "libinit_msm8916_defaults",
+    recovery_available: true,
+    cpp_std: "experimental",
+    header_libs: [
+        "libbase_headers",
+    ],
+    include_dirs: [
+        "external/selinux/libselinux/include",
+        "system/core/base/include",
+        "system/core/init"
+    ],
+    srcs: [
+        ":libinit_msm8916_src",
+    ],
+}

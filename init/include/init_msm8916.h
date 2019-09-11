@@ -40,7 +40,6 @@
 
 #include "vendor_init.h"
 #include "property_service.h"
-#include "log.h"
 #include "util.h"
 
 void init_target_properties();
