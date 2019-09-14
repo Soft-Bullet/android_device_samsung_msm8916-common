@@ -162,7 +162,6 @@ TARGET_SYSTEM_PROP += $(PLATFORM_PATH)/system.prop
 BOARD_USES_QCOM_HARDWARE := true
 
 # Radio
-TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := true
 
 # Recovery
