@@ -390,7 +390,6 @@ PRODUCT_PACKAGES += \
     init.qcom.usb.rc \
     init.qcom.usb.sh \
     init.recovery.qcom.rc \
-    twrp.fstab \
     ueventd.qcom.rc
 
 # RenderScript HAL
