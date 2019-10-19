@@ -2848,9 +2848,9 @@ Return<void> RadioImpl::setCarrierInfoForImsiEncryption(int32_t serial,
         memsetAndFreeStrings(2, imsiEncryption.mnc, imsiEncryption.mcc);
         return Void();
     }
-    int32_t lSize = data.carrierKey.size();
-    imsiEncryption.carrierKey = new uint8_t[lSize];
-    memcpy(imsiEncryption.carrierKey, data.carrierKey.data(), lSize);
+    imsiEncryption.carrierKeyLength = data.carrierKey.size();
+    imsiEncryption.carrierKey = new uint8_t[imsiEncryption.carrierKeyLength];
+    memcpy(imsiEncryption.carrierKey, data.carrierKey.data(), imsiEncryption.carrierKeyLength);
     imsiEncryption.expirationTime = data.expirationTime;
     CALL_ONREQUEST(pRI->pCI->requestNumber, &imsiEncryption,
             sizeof(RIL_CarrierInfoForImsiEncryption), pRI, mSlotId);
@@ -3949,7 +3949,7 @@ int radio::getDataRegistrationStateResponse(int slotId,
                 dataRegResponse.reasonDataDenied =  ATOI_NULL_HANDLED(resp[4]);
                 dataRegResponse.maxDataCalls =  ATOI_NULL_HANDLED_DEF(resp[5], 1);
                 fillCellIdentityFromDataRegStateResponseString(dataRegResponse.cellIdentity,
-                        numStrings < 11 ? 6 : 11, resp);
+                        numStrings < 11 ? 6 : 11 && numStrings < 13 ? 6 : 13, resp);
             }
         } else {
             RIL_DataRegistrationStateResponse *dataRegState =
@@ -8633,7 +8633,7 @@ int radio::networkScanResultInd(int slotId,
 
         V1_1::NetworkScanResult result;
         result.status = (V1_1::ScanStatus) networkScanResult->status;
-        result.error = (RadioError) e;
+        result.error = (RadioError) networkScanResult->error;
         convertRilCellInfoListToHal(
                 networkScanResult->network_infos,
                 networkScanResult->network_infos_length * sizeof(RIL_CellInfo_v12),

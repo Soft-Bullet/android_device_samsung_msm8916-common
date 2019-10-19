@@ -746,7 +746,7 @@ typedef struct {
     const char * mcc;
     const char * mnc;
     RIL_CarrierMatchType match_type;   /* Specify match type for the carrier.
-                                        * If it's RIL_MATCH_ALL, match_data is null;
+                                        * If it’s RIL_MATCH_ALL, match_data is null;
                                         * otherwise, match_data is the value for the match type.
                                         */
     const char * match_data;
