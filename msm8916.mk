@@ -194,12 +194,6 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service
 
-# Ebtables
-PRODUCT_PACKAGES += \
-    ebtables \
-    ethertypes \
-    libebtc
-
 # Exclude AudioFX
 TARGET_EXCLUDES_AUDIOFX := true
 
