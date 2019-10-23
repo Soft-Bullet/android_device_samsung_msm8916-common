@@ -4,15 +4,15 @@
    Redistribution and use in source and binary forms, with or without
    modification, are permitted provided that the following conditions are
    met:
-	* Redistributions of source code must retain the above copyright
-	  notice, this list of conditions and the following disclaimer.
-	* Redistributions in binary form must reproduce the above
-	  copyright notice, this list of conditions and the following
-	  disclaimer in the documentation and/or other materials provided
-	  with the distribution.
-	* Neither the name of The Linux Foundation nor the names of its
-	  contributors may be used to endorse or promote products derived
-	  from this software without specific prior written permission.
+    * Redistributions of source code must retain the above copyright
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above
+      copyright notice, this list of conditions and the following
+      disclaimer in the documentation and/or other materials provided
+      with the distribution.
+    * Neither the name of The Linux Foundation nor the names of its
+      contributors may be used to endorse or promote products derived
+      from this software without specific prior written permission.
 
    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
@@ -36,9 +36,9 @@
 
 #include <init_msm8916.h>
 
-using android::base::GetProperty;
 using android::base::ReadFileToString;
 using android::base::Trim;
+using ::android::init::property_set;
 
 #define SERIAL_NUMBER_FILE "/efs/FactoryApp/serial_no"
 
@@ -47,21 +47,15 @@ void init_target_properties()
 {
 }
 
-void property_override(char const prop[], char const value[])
-{
-    prop_info *pi;
+constexpr const char* RO_PROP_SOURCES[] = {
+        nullptr, "product.", "product_services.", "odm.", "vendor.", "system.", "bootimage.",
+};
 
-    pi = (prop_info*) __system_property_find(prop);
-    if (pi)
+void property_override(char const prop[], char const value[]) {
+    prop_info* pi = (prop_info*)__system_property_find(prop);
+    if (pi) {
         __system_property_update(pi, value, strlen(value));
-    else
-        __system_property_add(prop, strlen(prop), value, strlen(value));
-}
-
-void property_override_dual(char const system_prop[], char const vendor_prop[], char const value[])
-{
-    property_override(system_prop, value);
-    property_override(vendor_prop, value);
+    }
 }
 
 /* Read the file at filename and returns the integer
@@ -72,92 +66,106 @@ void property_override_dual(char const system_prop[], char const vendor_prop[], 
  * @return: integer value read if succesful, -1 otherwise. */
 int read_integer(const char* filename)
 {
-	int retval;
-	FILE * file;
+    int retval;
+    FILE * file;
 
-	/* open the file */
-	if (!(file = fopen(filename, "r"))) {
-		return -1;
-	}
-	/* read the value from the file */
-	fscanf(file, "%d", &retval);
-	fclose(file);
+    /* open the file */
+    if (!(file = fopen(filename, "r"))) {
+        return -1;
+    }
+    /* read the value from the file */
+    fscanf(file, "%d", &retval);
+    fclose(file);
 
-	return retval;
+    return retval;
 }
 
 void set_cdma_properties(const char *operator_alpha, const char *operator_numeric, const char * network)
 {
-	/* Dynamic CDMA Properties */
-	android::init::property_set("ro.cdma.home.operator.alpha", operator_alpha);
-	android::init::property_set("ro.cdma.home.operator.numeric", operator_numeric);
-	android::init::property_set("ro.telephony.default_network", network);
+    /* Dynamic CDMA Properties */
+    property_set("ro.cdma.home.operator.alpha", operator_alpha);
+    property_set("ro.cdma.home.operator.numeric", operator_numeric);
+    property_set("ro.telephony.default_network", network);
 
-	/* Static CDMA Properties */
-	android::init::property_set("ril.subscription.types", "NV,RUIM");
-	android::init::property_set("ro.telephony.default_cdma_sub", "0");
-	android::init::property_set("ro.telephony.get_imsi_from_sim", "true");
-	android::init::property_set("ro.telephony.ril.config", "newDriverCallU,newDialCode");
-	android::init::property_set("telephony.lteOnCdmaDevice", "1");
+    /* Static CDMA Properties */
+    property_set("ril.subscription.types", "NV,RUIM");
+    property_set("ro.telephony.default_cdma_sub", "0");
+    property_set("ro.telephony.get_imsi_from_sim", "true");
+    property_set("ro.telephony.ril.config", "newDriverCallU,newDialCode");
+    property_set("telephony.lteOnCdmaDevice", "1");
 }
 
 void set_dsds_properties()
 {
-	android::init::property_set("ro.multisim.simslotcount", "2");
-	android::init::property_set("ro.telephony.ril.config", "simactivation");
-	android::init::property_set("persist.radio.multisim.config", "dsds");
-	android::init::property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
+    property_set("ro.multisim.simslotcount", "2");
+    property_set("ro.telephony.ril.config", "simactivation");
+    property_set("persist.radio.multisim.config", "dsds");
+    property_set("rild.libpath2", "/system/lib/libsec-ril-dsds.so");
 }
 
 void set_gsm_properties()
 {
-	android::init::property_set("telephony.lteOnCdmaDevice", "0");
-	android::init::property_set("ro.telephony.default_network", "9");
+    property_set("telephony.lteOnCdmaDevice", "0");
+    property_set("ro.telephony.default_network", "9");
 }
 
 void set_lte_properties()
 {
-	android::init::property_set("persist.radio.lte_vrte_ltd", "1");
-	android::init::property_set("telephony.lteOnCdmaDevice", "0");
-	android::init::property_set("telephony.lteOnGsmDevice", "1");
-	android::init::property_set("ro.telephony.default_network", "10");
+    property_set("persist.radio.lte_vrte_ltd", "1");
+    property_set("telephony.lteOnCdmaDevice", "0");
+    property_set("telephony.lteOnGsmDevice", "1");
+    property_set("ro.telephony.default_network", "10");
 }
 
 void set_wifi_properties()
 {
-	android::init::property_set("ro.carrier", "wifi-only");
-	android::init::property_set("ro.radio.noril", "1");
+    property_set("ro.carrier", "wifi-only");
+    property_set("ro.radio.noril", "1");
 }
 
 void set_target_properties(const char *device, const char *model)
 {
-	property_override_dual("ro.product.device", "ro.product.vendor.model", device);
-	property_override_dual("ro.product.model", "ro.product.vendor.device", model);
+    const auto ro_prop_override = [](const char* source, const char* prop, const char* value,
+                                     bool product) {
+        std::string prop_name = "ro.";
 
-	android::init::property_set("ro.ril.telephony.mqanelements", "6");
+        if (product) prop_name += "product.";
+        if (source != nullptr) prop_name += source;
+        if (!product) prop_name += "build.";
+        prop_name += prop;
 
-	/* check for multi-sim devices */
+        property_override(prop_name.c_str(), value);
+    };
 
-	/* check if the simslot count file exists */
-	if (access(SIMSLOT_FILE, F_OK) == 0) {
-		int sim_count = read_integer(SIMSLOT_FILE);
+    for (const auto& source : RO_PROP_SOURCES) {
+        ro_prop_override(source, "device",device, true);
+        ro_prop_override(source, "model", model, true);
+    }
 
-		/* set the dual sim props */
-		if (sim_count == 2)
-			set_dsds_properties();
-	}
+    property_set("ro.ril.telephony.mqanelements", "6");
 
-	char const *serial_number_file = SERIAL_NUMBER_FILE;
-	std::string serial_number;
+    /* check for multi-sim devices */
 
-	if (ReadFileToString(serial_number_file, &serial_number)) {
-        	serial_number = Trim(serial_number);
-        	property_override("ro.serialno", serial_number.c_str());
-	}
+    /* check if the simslot count file exists */
+    if (access(SIMSLOT_FILE, F_OK) == 0) {
+        int sim_count = read_integer(SIMSLOT_FILE);
+
+        /* set the dual sim props */
+        if (sim_count == 2)
+            set_dsds_properties();
+    }
+
+    char const *serial_number_file = SERIAL_NUMBER_FILE;
+    std::string serial_number;
+
+    if (ReadFileToString(serial_number_file, &serial_number)) {
+        serial_number = Trim(serial_number);
+        property_override("ro.serialno", serial_number.c_str());
+    }
 }
 
 void vendor_load_properties(void)
 {
-	/* set the device properties */
-	init_target_properties();
+    /* set the device properties */
+    init_target_properties();
 }
