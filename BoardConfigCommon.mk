@@ -101,6 +101,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
 TARGET_EXFAT_DRIVER := sdfat
 BOARD_ROOT_EXTRA_FOLDERS := firmware firmware-modem efs persist
+BOARD_ROOT_EXTRA_SYMLINKS := /data/tombstones:/tombstones
 
 # FM
 AUDIO_FEATURE_ENABLED_FM_POWER_OPT := true
