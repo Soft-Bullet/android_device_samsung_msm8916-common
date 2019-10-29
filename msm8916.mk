@@ -112,6 +112,9 @@ PRODUCT_PACKAGES += \
     android.hardware.drm@1.0-impl \
     android.hardware.drm@1.0-service
 
+# Exclude AudioFX
+TARGET_EXCLUDES_AUDIOFX := true
+
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
