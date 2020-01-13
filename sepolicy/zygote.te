@@ -1,0 +1,2 @@
+allow zygote proc_cmdline:file { read open getattr };
+allow zygote system_file:dir mounton;
