@@ -272,13 +272,8 @@ PRODUCT_PACKAGES += \
     lights.msm8916
 
 # Media configurations
-ifeq ($(filter j7ltespr j7ltechn,$(TARGET_DEVICE)),)
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/media/media_codecs.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
-else
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/media/media_codecs_8929.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs.xml
-endif
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:$(TARGET_COPY_OUT_VENDOR)/etc/media_codecs_google_audio.xml \
