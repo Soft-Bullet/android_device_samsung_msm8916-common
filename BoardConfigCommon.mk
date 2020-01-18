@@ -194,11 +194,8 @@ VENDOR_SECURITY_PATCH := 2017-09-01
 # Legacy BLOB Support
 TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /system/bin/mediaserver=22 \
-    /vendor/bin/mm-qcamera-daemon=22 \
-    /vendor/bin/hw/rild=27
-
-# Power
-TARGET_USES_INTERACTION_BOOST := true
+    /system/vendor/bin/mm-qcamera-daemon=22 \
+    /system/vendor/bin/hw/rild=27
 
 # Protobuf
 PROTOBUF_SUPPORTED := true

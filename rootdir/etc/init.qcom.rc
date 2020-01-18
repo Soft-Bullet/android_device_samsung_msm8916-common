@@ -80,24 +80,9 @@ on boot
     chmod 0660 /sys/module/wlan/parameters/fwpath
     chown wifi wifi /sys/module/wlan/parameters/fwpath
 
-    # For PN547 NFC
-    chmod 0660 /dev/pn547
-    chown nfc nfc /dev/pn547
-
     # NXP Amplifier
     chmod 0666 /dev/i2c-1
     chown system system /dev/i2c-1
-
-    # Touch Disabler permissions
-    chown system system /sys/class/touch_key
-    chown system system /sys/class/touch_key/control
-    chown system system /sys/class/touch_key/enabled
-    chown system system /sys/class/touch_key/status
-
-    chown system system /sys/class/touch_screen
-    chown system system /sys/class/touch_screen/control
-    chown system system /sys/class/touch_screen/enabled
-    chown system system /sys/class/touch_screen/status
 
     # for BT MAC address
     mkdir /efs/bluetooth 0775 radio system
@@ -111,38 +96,30 @@ on boot
     mkdir /dev/socket/qmux_bluetooth 2770 bluetooth bluetooth
     mkdir /dev/socket/qmux_gps 2770 gps gps
 
-    mkdir /persist/drm 0770 system system
-    mkdir /persist/misc 0770 system system
+    # Create persist folders
     mkdir /persist/alarm 0770 system system
+    mkdir /persist/display 0770 system graphics
+
+    # Create NETMGR daemon socket area
+    mkdir /dev/socket/netmgr 0750 radio radio
 
     setprop wifi.interface wlan0
-
-#   Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.wifi    524288,2097152,4194304,262144,524288,1048576
-
     setprop ro.telephony.call_ring.multiple false
-
-    #Remove SUID bit for iproute2 ip tool
-    chmod 0755 /system/bin/ip
-
-#   Define TCP buffer sizes for various networks
-#   ReadMin, ReadInitial, ReadMax, WriteMin, WriteInitial, WriteMax,
-    setprop net.tcp.buffersize.default 4096,87380,524288,4096,16384,110208
-    setprop net.tcp.buffersize.lte     2097152,4194304,8388608,262144,524288,1048576
-    setprop net.tcp.buffersize.umts    4094,87380,110208,4096,16384,110208
-    setprop net.tcp.buffersize.hspa    4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsupa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hsdpa   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.hspap   4094,87380,1220608,4096,16384,1220608
-    setprop net.tcp.buffersize.edge    4093,26280,35040,4096,16384,35040
-    setprop net.tcp.buffersize.gprs    4092,8760,11680,4096,8760,11680
-    setprop net.tcp.buffersize.evdo    4094,87380,524288,4096,16384,262144
 
 #   Assign TCP buffer thresholds to be ceiling value of technology maximums
 #   Increased technology maximums should be reflected here.
     write /proc/sys/net/core/rmem_max  16777216
     write /proc/sys/net/core/wmem_max  8388608
+
+    # To allow interfaces to get v6 address when tethering is enabled
+    write /proc/sys/net/ipv6/conf/rmnet0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet3/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet4/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet5/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet6/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet7/accept_ra 2
 
     # To prevent out of order acknowledgements from making
     # connection tracking to treat them as not belonging to
@@ -269,7 +246,7 @@ on boot
     chown system system /sys/class/camera/front/front_camfw_full
     chown system system /sys/class/camera/front/front_camfw_load
 
-#OTG Test
+# OTG Test
     chown system radio /sys/class/host_notify/usb_otg/booster
     chmod 0660 /sys/class/host_notify/usb_otg/booster
     chown system radio /sys/class/usb_notify/usb_control/disable
@@ -345,7 +322,7 @@ on property:ro.config.ksm=true
     write /sys/kernel/mm/ksm/sleep_millisecs 500
     write /sys/kernel/mm/ksm/run 1
 
-#enable zram
+# Enable ZRAM
 on property:ro.config.zram.enabled=true
     write /proc/sys/vm/page-cluster 0
     write /proc/sys/vm/swappiness 100
@@ -385,19 +362,9 @@ on post-fs
     chmod 0222 /sys/kernel/debug/tracing/trace_marker
 
 on post-fs-data
-    # radio
-    mkdir /data/log 0660 radio radio
-
-    # Create directory for TZ Apps
-    mkdir /data/misc/qsee 0770 system system
-
-    # sec_efs_file
-    mkdir /efs/sec_efs 0775 radio system
 
     # Create folder for mm-qcamera-daemon
     mkdir /data/misc/camera 0770 camera camera
-
-    mkdir /data/misc/ipa 0700 net_admin net_admin
 
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
@@ -425,16 +392,6 @@ on post-fs-data
     chmod 0770 /data/nfc/param
     chown nfc nfc /data/nfc/param
 
-    # Create directory used by audio subsystem
-    mkdir /data/misc/audio 0770 audio audio
-
-    # Create directory used by the DASH client
-    mkdir /data/misc/dash 0770 media audio
-
-    # Create directory used by display clients
-    mkdir /data/misc/display 0770 system graphics
-    mkdir /persist/display 0770 system graphics
-
     # Mounting of persist is moved to 'on emmc-fs' and 'on fs' sections
     # We chown/chmod /persist again so because mount is run as root + defaults
     chown system system /persist
@@ -450,30 +407,27 @@ on post-fs-data
     chown system system /sys/devices/platform/msm_sdcc.3/polling
     chown system system /sys/devices/platform/msm_sdcc.4/polling
 
-    #Create the symlink to qcn wpa_supplicant folder for ar6000 wpa_supplicant
-    mkdir /data/system 0775 system system
-    
-    #Create directories for Location services
+    # Create directories for Location services
     mkdir /data/misc/location 0770 gps gps
     mkdir /data/misc/location/mq 0770 gps gps
     mkdir /data/misc/location/xtwifi 0770 gps gps
-
-    #Create directory for FOTA
-    mkdir /data/fota 0771
-    chown system system /data/fota
 
     # Create /data/time folder for time-services
     mkdir /data/time/ 0700 system system
 
     setprop vold.post_fs_data_done 1
 
-    #Create folder for mm-qcamera-daemon
+    # Bluetooth
+    chown bluetooth bluetooth /persist/.bt_nv.bin
+
+    # Create folder for mm-qcamera-daemon
     mkdir /data/camera 0770 media camera
 
-    #Create PERFD deamon related dirs
+    # Create PERFD deamon related dirs
     mkdir /data/misc/perfd 2755 root system
     mkdir /data/system/perfd 2770 root system
 
+    # Tombstones
     mkdir /data/tombstones/modem 0771 system system
     mkdir /data/tombstones/lpass 0771 system system
     mkdir /data/tombstones/wcnss 0771 system system
@@ -486,23 +440,13 @@ on post-fs-data
     # Sensor
     mkdir /persist/sensors 0770 system system
 
-    #Create FM dir for patchdownloader
+    # Create FM dir for patchdownloader
     mkdir /data/misc/fm 0770 system system
     chmod 0770 /data/misc/fm
-
-    # qti-logkit data
-    mkdir /data/misc/qti-logkit/ 0771 system system
-    mkdir /data/misc/qti-logkit/shared-privileged/ 2770 system system
-    mkdir /data/misc/qti-logkit/shared-public/ 2770 system diag
-    mkdir /data/misc/qti-logkit/socket-privileged/ 2770 system system
-    mkdir /data/misc/qti-logkit/socket-public/ 2750 system diag
-    mkdir /data/misc/qti-logkit/logdata/ 2750 system shell
 
     # RIL LINK
     rm /data/data/com.android.providers.telephony/databases
     rm /data/data/com.android.providers.telephony/shared_prefs
-
-    setprop vold.post_fs_data_done 1
 
 # start camera server as daemon
 service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
@@ -512,7 +456,7 @@ service qcamerasvr /system/vendor/bin/mm-qcamera-daemon
     writepid /dev/cpuset/camera-daemon/tasks
 
 on property:sys.boot_completed=1
-    restart cameraserver
+    restart qcamerasvr
 
 service qseecomd /system/vendor/bin/qseecomd
    class core
@@ -610,12 +554,11 @@ on property:vendor.hw.fm.init=0
     write /sys/module/radio_iris_transport/parameters/fmsmd_set 0
 
 on property:dev.bootcomplete=1
-
-# Symlink directories to access telephony.db required by RIL
-symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
-symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
-restorecon /data/data/com.android.providers.telephony/databases
-restorecon /data/data/com.android.providers.telephony/shared_prefs
+    # Symlink directories to access telephony.db required by RIL
+    symlink /data/user_de/0/com.android.providers.telephony/databases /data/data/com.android.providers.telephony/databases
+    symlink /data/user_de/0/com.android.providers.telephony/shared_prefs /data/data/com.android.providers.telephony/shared_prefs
+    restorecon /data/data/com.android.providers.telephony/databases
+    restorecon /data/data/com.android.providers.telephony/shared_prefs
 
 service irsc_util /system/vendor/bin/irsc_util "/system/vendor/etc/sec_config"
     class main

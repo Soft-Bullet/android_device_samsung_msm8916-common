@@ -396,6 +396,7 @@ PRODUCT_PACKAGES += \
 # Radio
 PRODUCT_PACKAGES += \
     libsecnativefeature \
+    librmnetctl \
     libxml2 \
     macloader \
 
@@ -424,6 +425,12 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.renderscript@1.0-impl \
     android.hardware.renderscript@1.0-service
+
+# RIL
+PRODUCT_PACKAGES += \
+    libril \
+    librilutils \
+    rild
 
 # RRO
 PRODUCT_ENFORCE_RRO_TARGETS := \
