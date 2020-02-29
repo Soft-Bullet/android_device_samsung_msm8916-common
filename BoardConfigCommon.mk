@@ -73,6 +73,9 @@ TARGET_BOOTANIMATION_HALF_RES := true
 TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/vendor/bin/mm-qcamera-daemon=23
 
+# DexPreopt debug info
+WITH_DEXPREOPT_DEBUG_INFO := false
+
 # Display
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000
