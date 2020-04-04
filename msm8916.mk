@@ -293,4 +293,4 @@ PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/wifi/WCNSS_qcom_wlan_nv.bin:$(TARGET_COPY_OUT_VENDOR)/firmware/wlan/prima/WCNSS_qcom_wlan_nv.bin
 
 # Call the proprietary setup
-$(call inherit-product, vendor/samsung/msm8916-common/msm8916-vendor.mk)
+$(call inherit-product-if-exists, vendor/samsung/msm8916-common/msm8916-vendor.mk)
