@@ -1,4 +1,13 @@
-# To improve app launch times - we would like to force all tasks to
-# run on big cores for app launch (sched_boost) - instead of just
-# boosting them to make it "more likely" to run on big cores.
-allow system_server domain:process setsched;
+allow system_server sensors_device:chr_file rw_file_perms;
+allow system_server efs_file:dir search;
+allow system_server sysfs_vibeamp:file write;
+allow system_server misc_file:dir getattr;
+allow system_server sysfs_livedisplay_tuneable:file rw_file_perms;
+allow system_server init:binder { call transfer };
+allow system_server system_server:process execmem;
+allow system_server crash_dump:process getpgid;
+allow system_server adb_data_file:file { getattr };
+allow system_server adb_data_file:dir { getattr };
+allow system_server sysfs_input:file { write };
+r_dir_file(system_server, persist_file)
+

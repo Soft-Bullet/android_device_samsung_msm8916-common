@@ -1,0 +1,3 @@
+allow mediaprovider cache_recovery_file:dir { open read };
+allow mediaprovider radio_service:service_manager find;
+

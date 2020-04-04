@@ -1,0 +1,6 @@
+allow untrusted_app_25 proc_vmstat:file { open getattr };
+allow untrusted_app_25 serialno_prop:file { open read getattr }; 
+allow untrusted_app_25 sysfs:file { read open getattr };
+allow untrusted_app_25 net_dns_prop:file { read };
+allow untrusted_app_25 rootfs:dir { read };
+allow untrusted_app_25 unlabeled:file { setattr getattr };

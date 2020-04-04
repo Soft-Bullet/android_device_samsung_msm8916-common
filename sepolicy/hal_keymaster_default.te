@@ -1,0 +1,5 @@
+allow hal_keymaster_default kernel:system module_request;
+allow hal_keymaster_default exfat:dir { search read };
+allow hal_keymaster_default exfat:file { open read getattr };
+allow hal_keymaster_default unlabeled:dir { search };
+allow hal_keymaster_default unlabeled:file { open read getattr };

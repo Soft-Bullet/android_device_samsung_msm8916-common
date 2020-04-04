@@ -1,0 +1,4 @@
+allow time_daemon time_data_file:file { getattr read append open };
+
+allow time_daemon time_daemon:capability { setgid setuid };
+allow time_daemon device:chr_file { open read write ioctl };

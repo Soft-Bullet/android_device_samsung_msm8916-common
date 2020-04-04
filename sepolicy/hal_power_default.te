@@ -1,0 +1,7 @@
+allow hal_power_default sysfs:file write;
+allow hal_power_default mpctl_socket:dir { search write };
+allow hal_power_default sysfs:file { open read write };
+allow hal_power_default init:unix_stream_socket { connectto };
+allow hal_power_default sysfs_msm_perf:file { open write };
+allow hal_power_default system_data_file:sock_file { write };
+

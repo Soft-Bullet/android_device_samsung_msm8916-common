@@ -1,0 +1,3 @@
+allow surfaceflinger exfat:dir search;
+allow surfaceflinger sysfs:file { open read getattr };
+

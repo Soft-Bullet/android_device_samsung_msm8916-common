@@ -1,0 +1,4 @@
+allow servicemanager netmgrd:dir { search };
+allow servicemanager netmgrd:file { read open };
+allow servicemanager netmgrd:process getattr;
+

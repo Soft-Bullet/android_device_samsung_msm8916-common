@@ -1,0 +1,5 @@
+allow ueventd exfat:dir search;
+allow ueventd exfat:file { read open getattr };
+allow ueventd vendor_data_file:file r_file_perms;
+allow ueventd unlabeled:dir search;
+allow ueventd unlabeled:file { read open getattr };

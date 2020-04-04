@@ -1,47 +1,46 @@
-selinux_check_context(init)
-
-allow init {
-    sysfs_iio
-    sysfs_sec_tsp
-    sysfs_sensors
-}:lnk_file read;
-
-allow init {
-    sysfs_audio
-    sysfs_batteryinfo
-    sysfs_bluetooth_writable
-    sysfs_camera
-    sysfs_graphics
-    sysfs_iio
-    sysfs_input
-    sysfs_kgsl
-    sysfs_leds
-    sysfs_mdnie
-    sysfs_msmuart_file
-    sysfs_sec_bamdmux
-    sysfs_sec_barcode_emul
-    sysfs_sec_epen
-    sysfs_sec_ir
-    sysfs_sec_key
-    sysfs_sec_led
-    sysfs_sec_switch
-    sysfs_sec_thermistor
-    sysfs_sec_touchkey
-    sysfs_sec_tsp
-    sysfs_sensors
-    sysfs_socinfo
-    sysfs_usb_otg
-}:file setattr;
-
-allow init {
-    sysfs_cpu_boost
-    sysfs_devices_system_cpu
-    sysfs_lowmemorykiller
-    sysfs_mmc_host
-    sysfs_msm_perf
-    sysfs_msm_power
-    sysfs_sec_key
-    sysfs_thermal
-}:file w_file_perms;
-
-allow init proc_sec_simslot:file r_file_perms;
+allow init { domain -lmkd -crash_dump }:process noatsecure;
+allow init debugfs:file write;
+allow init sysfs:lnk_file setattr;
+allow init exfat:dir search;
+allow init shell_exec:file execute_no_trans;
+allow init sysfs:file { open write setattr };
+allow init sysfs_graphics:file setattr;
+allow init sysfs_vibeamp:file setattr;
+allow init system_file:file execute_no_trans;
+allow init self:socket { create ioctl };
+allow init smd_device:chr_file { write ioctl };
+allow init proc:file { write open };
+allow init sysfs_devices_system_cpu:file write;
+allow init sysfs_msm_power:file write;
+allow init qmuxd_socket:sock_file write;
+allow init qmuxd:unix_stream_socket connectto;
+allow init sysfs_msm_power:file open;
+allow init sysfs_lowmemorykiller:file { write open };
+allow init sysfs_process_reclaim:file { write open };
+allow init sysfs_thermal:file write;
+allow init sysfs_socinfo:file write;
+allow init system_data_file:chr_file getattr;
+allow init sysfs_net:file write;
+allow init fm_radio_device:chr_file ioctl;
+allow init sysfs_fm:file write;
+allow init sysfs_msm_perf:file { open write read };
+allow init ion_device:chr_file { open read ioctl };
+allow init tee_device:chr_file { read write ioctl };
+allow init sysfs:file { read };
+allow init rpmb_device:blk_file { write };
+allow init efs_file:dir { mounton };
+allow init firmware-modem_file:dir { mounton };
+allow init vendor_file:file { execute_no_trans };
+allow init system_data_file:sock_file { write };
+allow init system_data_file:file { append };
+allow init init:capability { sys_ptrace };
+allow init hwservicemanager:binder { call transfer };
+allow init default_android_hwservice:hwservice_manager add;
+allow init hidl_base_hwservice:hwservice_manager add;
+allow init hal_power_hwservice:hwservice_manager add;
+allow init hal_wifi_hwservice:hwservice_manager add;
+allow init mpctl_socket:sock_file { write };
+allow init hal_drm_hwservice:hwservice_manager { add };
+allow init sysfs_livedisplay_tuneable:file { read };
+allow init sysfs_mdnie:file { read write };
+allow init sysfs_graphics:file { read write };
