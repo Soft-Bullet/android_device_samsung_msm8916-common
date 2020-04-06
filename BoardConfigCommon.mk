@@ -69,10 +69,6 @@ BLUETOOTH_HCI_USE_MCT := true
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
 
-# Camera
-TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
-    /system/vendor/bin/mm-qcamera-daemon=23
-
 # DexPreopt debug info
 WITH_DEXPREOPT_DEBUG_INFO := false
 
@@ -122,6 +118,20 @@ BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_SEPARATED_DT := true
 
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
+
+TARGET_KERNEL_CONFIG := msm8916_sec_defconfig
+TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
+
+# Kernel - Toolchain
+KERNEL_TOOLCHAIN := $(PWD)/prebuilts/gcc/linux-x86/arm/arm-eabi-7.2/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
+# Legacy BLOB Support
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
+    /system/bin/mediaserver=22 \
+    /system/vendor/bin/mm-qcamera-daemon=22 \
+    /system/vendor/bin/hw/rild=27 \
+    /system/vendor/bin/hw/android.hardware.sensors@1.0-service.a5-common=22
 
 # Manifest
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
