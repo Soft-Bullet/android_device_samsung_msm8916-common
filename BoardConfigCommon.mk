@@ -162,10 +162,6 @@ TARGET_USES_OLD_MNC_FORMAT := true
 
 TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
 
-TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
-    /vendor/bin/hw/rild=27 \
-    /system/vendor/bin/hw/rild=27
-
 # Recovery
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
 
@@ -176,9 +172,11 @@ BOARD_SEPOLICY_DIRS += \
 
 # Shims
 TARGET_LD_SHIM_LIBS := \
-    /system/lib/libcrypto.so|libboringssl-compat.so \
     /system/vendor/lib/libflp.so|libshims_flp.so \
-    /system/vendor/lib/libizat_core.so|libshims_get_process_name.so
+    /system/vendor/lib/libizat_core.so|libshims_get_process_name.so \
+    /system/lib/libmmjpeg_interface.so|libboringssl-compat.so \
+    /system/lib/hw/camera.vendor.msm8916.so|libcamera_shim.so \
+    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
 
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
