@@ -69,8 +69,14 @@ BLUETOOTH_HCI_USE_MCT := true
 # Boot animation
 TARGET_BOOTANIMATION_HALF_RES := true
 
-# DexPreopt debug info
-WITH_DEXPREOPT_DEBUG_INFO := false
+# Camera
+BOARD_GLOBAL_CFLAGS += -DMETADATA_CAMERA_SOURCE
+TARGET_HAS_LEGACY_CAMERA_HAL1 := true
+TARGET_NEEDS_LEGACY_CAMERA_HAL1_DYN_NATIVE_HANDLE := true
+TARGET_PROVIDES_CAMERA_HAL := true
+TARGET_USE_VENDOR_CAMERA_EXT := true
+TARGET_USES_QTI_CAMERA_DEVICE := true
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 # Display
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
@@ -174,10 +180,8 @@ BOARD_SEPOLICY_DIRS += \
 TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libflp.so|libshims_flp.so \
     /system/vendor/lib/libizat_core.so|libshims_get_process_name.so \
-    /system/lib/libmmjpeg_interface.so|libboringssl-compat.so \
-    /system/lib/hw/camera.vendor.msm8916.so|libcamera_shim.so \
-    /system/vendor/lib/libqomx_jpegenc.so|libboringssl-compat.so
-
+    /system/lib/libcrypto.so|libboringssl-compat.so
+    
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HOSTAPD_DRIVER := NL80211

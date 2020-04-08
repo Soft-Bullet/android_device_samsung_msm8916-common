@@ -168,6 +168,11 @@ on boot
     chown system media_rw /sys/class/graphics/fb0/csc_cfg
     chmod 0660 /sys/class/graphics/fb0/csc_cfg
 
+    # permission for Input Device(TSP).
+    chown system radio /sys/class/sec/tsp/cmd
+    chmod 0660 /sys/class/sec/tsp/input/enabled
+    chown system system /sys/class/sec/tsp/input/enabled
+
     # permission for Input Device(TKEY).
     chmod 0660 /sys/class/sec/sec_touchkey/input/enabled
     chown system system /sys/class/sec/sec_touchkey/input/enabled
@@ -199,14 +204,6 @@ on boot
 
     # Wifi firmware reload path
     chown wifi wifi /sys/module/wlan/parameters/fwpath
-
-    # Permissions for touchscreen
-    chown system system /sys/bus/i2c/devices/i2c-5/5-0038/glove_mode
-    chmod 0664 /sys/bus/i2c/devices/i2c-5/5-0038/glove_mode
-    chown system system /sys/bus/i2c/devices/i2c-5/5-0038/gesture_mode
-    chmod 0664 /sys/bus/i2c/devices/i2c-5/5-0038/gesture_mode
-
-    write /sys/bus/i2c/devices/i2c-5/5-0038/gesture_mode 1
 
     # Graphics node permissions
     chown system graphics /sys/class/graphics/fb0/dyn_pu
