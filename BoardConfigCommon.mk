@@ -17,6 +17,9 @@
 
 PLATFORM_PATH := device/samsung/msm8916-common
 
+# Include
+TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
+
 # Platform
 TARGET_BOARD_PLATFORM := msm8916
 TARGET_BOOTLOADER_BOARD_NAME := MSM8916
@@ -78,6 +81,10 @@ TARGET_USE_VENDOR_CAMERA_EXT := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
 USE_DEVICE_SPECIFIC_CAMERA := true
 
+# Charger
+BOARD_CHARGER_SHOW_PERCENTAGE := true
+BOARD_CHARGER_ENABLE_SUSPEND := true
+
 # Display
 OVERRIDE_RS_DRIVER := libRSDriver_adreno.so
 TARGET_ADDITIONAL_GRALLOC_10_USAGE_BITS := 0x02000000
@@ -86,16 +93,12 @@ TARGET_USES_ION := true
 
 # Encryption
 TARGET_HW_DISK_ENCRYPTION := true
-TARGET_HW_KEYMASTER_V03 := true
-TARGET_KEYMASTER_WAIT_FOR_QSEE := true
-TARGET_PROVIDES_KEYMASTER := true
 
 # Filesystem
 TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 TARGET_USES_MKE2FS := true
-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_EXFAT_DRIVER := sdfat
 BOARD_ROOT_EXTRA_FOLDERS := firmware firmware-modem efs persist
 
@@ -105,26 +108,27 @@ BOARD_HAVE_QCOM_FM := true
 TARGET_QCOM_NO_FM_FIRMWARE := true
 
 # Fonts
-EXCLUDE_SERIF_FONTS := true
-SMALLER_FONT_FOOTPRINT := true
+EXTENDED_FONT_FOOTPRINT := true
+
+# GPS
+TARGET_NO_RPC := true
+USE_DEVICE_SPECIFIC_GPS := true
+
+# HWUI
+HWUI_COMPILE_FOR_PERF := true
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_CMDLINE := console=null androidboot.hardware=qcom user_debug=23 msm_rtb.filter=0x3F ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci pm.sleep_mode=1 androidboot.selinux=permissive
-
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET := 0x02000000
-
 BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_BOOTIMG_MK := hardware/samsung/mkbootimg.mk
-
 BOARD_DTBTOOL_ARGS := -2
 BOARD_KERNEL_IMAGE_NAME := zImage
 BOARD_KERNEL_SEPARATED_DT := true
-
 TARGET_KERNEL_SOURCE := kernel/samsung/msm8916
-
 TARGET_KERNEL_CONFIG := msm8916_sec_defconfig
 TARGET_KERNEL_SELINUX_CONFIG := selinux_defconfig
 
@@ -146,6 +150,9 @@ DEVICE_MATRIX_FILE := $(PLATFORM_PATH)/compatibility_matrix.xml
 # Media
 TARGET_USES_MEDIA_EXTENSIONS := true
 
+# Network Routing
+TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
+
 # Power
 ifeq ($(TARGET_BOARD_PLATFORM_VARIANT),msm8939)
 TARGET_POWERHAL_SET_INTERACTIVE_EXT := $(PLATFORM_PATH)/power/power_ext.c
@@ -160,13 +167,8 @@ TARGET_SYSTEM_PROP += $(PLATFORM_PATH)/$(TARGET_BOARD_PLATFORM_VARIANT).prop
 BOARD_USES_QCOM_HARDWARE := true
 
 # Radio
-MALLOC_SVELTE := true
 TARGET_RIL_VARIANT := caf
 BOARD_PROVIDES_LIBRIL := true
-TARGET_NEEDS_NETD_DIRECT_CONNECT_RULE := true
-TARGET_USES_OLD_MNC_FORMAT := true
-
-TARGET_SPECIFIC_HEADER_PATH += $(PLATFORM_PATH)/include
 
 # Recovery
 TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
@@ -181,7 +183,10 @@ TARGET_LD_SHIM_LIBS := \
     /system/vendor/lib/libflp.so|libshims_flp.so \
     /system/vendor/lib/libizat_core.so|libshims_get_process_name.so \
     /system/lib/libcrypto.so|libboringssl-compat.so
-    
+
+# Telephone
+TARGET_USES_OLD_MNC_FORMAT := true
+
 # Wi-Fi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_HOSTAPD_DRIVER := NL80211
