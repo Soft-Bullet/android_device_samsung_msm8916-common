@@ -8,6 +8,5 @@ allow system_server system_server:process execmem;
 allow system_server crash_dump:process getpgid;
 allow system_server adb_data_file:file { getattr };
 allow system_server adb_data_file:dir { getattr };
-allow system_server sysfs_input:file { write };
 r_dir_file(system_server, persist_file)
 
