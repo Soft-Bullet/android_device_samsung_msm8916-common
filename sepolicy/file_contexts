@@ -17,6 +17,9 @@
 /data/data/com.android.providers.telephony/databases(/.*)?       u:object_r:radio_data_file:s0
 /data/data/com.android.providers.telephony/shared_prefs(/.*)?    u:object_r:radio_data_file:s0
 
+# DRM
+/(vendor|system/vendor)/bin/hw/android\.hardware\.drm@1\.1-service\.widevine                u:object_r:hal_drm_widevine_exec:s0
+
 # EFS files
 /efs/bluetooth(/.*)?										u:object_r:bluetooth_efs_file:s0
 /efs/wifi(/.*)?											u:object_r:wifi_efs_file:s0
@@ -42,12 +45,10 @@
 
 # sysfs
 /sys/devices/virtual/sensors(/.*)?                      u:object_r:sysfs_sensors:s0
-/sys/devices/virtual/input(/.*)?                        u:object_r:sysfs_input:s0
 /sys/devices/system/soc/soc0(/.*)?                      u:object_r:sysfs_socinfo:s0
 /sys/devices/platform/sec-thermistor(/.*)?              u:object_r:sysfs_sec_thermistor:s0
 /sys/devices/virtual/sec/bamdmux(/.*)?                  u:object_r:sysfs_sec_bamdmux:s0
 /sys/devices/virtual/sec/sec_key(/.*)?                  u:object_r:sysfs_sec_key:s0
-/sys/devices/virtual/sec/sec_touchkey(/.*)?             u:object_r:sysfs_sec_touchkey:s0
 /sys/devices/virtual/sec/switch(/.*)?                   u:object_r:sysfs_sec_switch:s0
 /sys/devices/virtual/host_notify/usb_otg(/.*)?               u:object_r:sysfs_usb_otg:s0
 

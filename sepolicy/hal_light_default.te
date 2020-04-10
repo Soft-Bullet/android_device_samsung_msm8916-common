@@ -1,3 +1,0 @@
-allow hal_light_default sysfs:file { open read write getattr };
-allow hal_light_default sysfs_sec_touchkey:dir { search };
-allow hal_light_default sysfs_sec_touchkey:file { read write open };
