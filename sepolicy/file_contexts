@@ -1,5 +1,5 @@
 # Shell files
-/system/vendor/bin/init\.qcom\.mem\.sh                                    u:object_r:qti_init_shell_exec:s0
+(vendor|system/vendor)/bin/init\.qcom\.mem\.sh                           u:object_r:qti_init_shell_exec:s0
 
 # Battery
 /sys/devices/battery\.85/power_supply/battery(/.*)?						u:object_r:sysfs_batteryinfo:s0
