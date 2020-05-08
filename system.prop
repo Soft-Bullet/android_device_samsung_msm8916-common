@@ -119,6 +119,7 @@ persist.radio.rat_on=combine
 ro.ril.transmitpower=true
 persist.radio.no_wait_for_card=1
 persist.radio.use_se_table_only=1
+persist.data.qmi.adb_logmask=0
 keyguard.no_require_sim=true
 
 # Wi-Fi
