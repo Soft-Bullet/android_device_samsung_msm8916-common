@@ -104,11 +104,16 @@
 /dev/jpeg0                0660   system     camera
 /dev/jpeg1                0660   system     camera
 /dev/jpeg2                0660   system     camera
+/dev/jpeg3                0660   system     camera
 /dev/adsprpc-smd          0664   system     system
 /dev/mmc3416x             0660   system     system
 /dev/msm_camera/*         0660   system     camera
 /dev/gemini/              0660   system     camera
 /dev/mercury0             0660   system     camera
+/dev/msm_vidc_reg         0660   system     camera
+/dev/msm_vidc_dec         0660   system     camera
+/dev/msm_vidc_dec_sec     0660   system     camera
+/dev/msm_vidc_enc         0660   system     camera
 /dev/msm_vidc_reg         0660   system     audio
 /dev/msm_vidc_dec         0660   system     audio
 /dev/msm_vidc_dec_sec     0660   system     audio
@@ -168,42 +173,28 @@
 /dev/tsc_ci0              0660   media       media
 
 # sensors
+/sys/devices/i2c-12/12-*                            pollrate_ms    0664    system   system
+/sys/devices/f9925000.i2c/i2c-0/0-*                 enable         0660    input    system
+/sys/devices/f9925000.i2c/i2c-0/0-*                 poll_delay     0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable         0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            poll_delay     0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            enable_wakeup  0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            max_latency    0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            flush          0660    input    system
+/sys/devices/soc.0/78b6000.i2c/i2c-0/0-*            calibrate      0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable         0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            poll_delay     0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            enable_wakeup  0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            max_latency    0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            flush          0660    input    system
+/sys/devices/soc.0/78b5000.i2c/i2c-1/1-*            calibrate      0660    input    system
+/sys/devices/virtual/optical_sensors/proximity      ps_adc         0660    input    system
+/sys/devices/virtual/optical_sensors/proximity      ps_poll_delay  0660    input    system
+/sys/devices/virtual/optical_sensors/lightsensor    ls_auto        0660    input    system
+/sys/devices/virtual/optical_sensors/lightsensor    ls_poll_delay  0660    input    system
 /sys/devices/virtual/input/input*                   poll           0660    input    system
 /sys/devices/virtual/input/input*                   pollrate_ms    0660    input    system
-/sys/devices/virtual/input/input*                   name           0660    input    system
-/sys/devices/virtual/input/input*                   phys           0660    input    system
-/sys/devices/virtual/input/input*                   properties     0660    input    system
-/sys/devices/virtual/input/input*                   uevent         0660    input    system
-/sys/devices/virtual/input/input*                   uniq           0660    input    system
-/sys/devices/virtual/input/input*                   enable         0660    input    system
 
-/sys/class/sensors/*     enable             0660    input    system
-/sys/class/sensors/*     calibration        0660    input    system
-/sys/class/sensors/*     delay              0660    input    system
-/sys/class/sensors/*     lowpassfilter      0660    input    system
-/sys/class/sensors/*     name               0660    input    system
-/sys/class/sensors/*     raw_data           0660    input    system
-/sys/class/sensors/*     reactive_alert     0660    input    system
-/sys/class/sensors/*     uevent             0660    input    system
-/sys/class/sensors/*     vendor             0660    input    system
-/sys/class/sensors/*     lux                0660    input    system
-/sys/class/sensors/*     prox_avg           0660    input    system
-/sys/class/sensors/*     prox_cal           0660    input    system
-/sys/class/sensors/*     prox_offset_pass   0660    input    system
-/sys/class/sensors/*     resolution         0660    input    system
-/sys/class/sensors/*     state              0660    input    system
-/sys/class/sensors/*     chip_id            0660    input    system
-/sys/class/sensors/*     odr                0660    input    system
-/sys/class/sensors/*     op_mode            0660    input    system
-/sys/class/sensors/*     reg                0660    input    system
-/sys/class/sensors/*     rept_xy            0660    input    system
-/sys/class/sensors/*     rept_z             0660    input    system
-/sys/class/sensors/*     selftest           0660    input    system
-/sys/class/sensors/*     status             0660    input    system
-/sys/class/sensors/*     value              0660    input    system
-/sys/class/sensors/*     place              0660    input    system
-/sys/class/sensors/*     flush              0660    input    system
- 
 # vm_bms
 /dev/vm_bms               0660   system     system
 /dev/battery_data         0660   system     system
@@ -233,6 +224,11 @@
 
 # ESOC devices
 /dev/subsys_esoc*         0640   system     radio
+
+# Improve Touch
+/dev/hbtp_input           0660   system     system
+/dev/hbtp_vm              0660   system     system
+/dev/jdi-bu21150          0660   system     system
 
 # Display / LiveDisplay
 /sys/class/lcd/panel            power_reduce                0660 system system
