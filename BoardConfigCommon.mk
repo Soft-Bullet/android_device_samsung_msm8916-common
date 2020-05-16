@@ -167,9 +167,6 @@ BOARD_USES_QCOM_HARDWARE := true
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 
-# Recovery
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_cm
-
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
