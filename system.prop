@@ -60,6 +60,9 @@ ro.opengles.version=196608
 persist.data.netmgrd.qos.enable=false
 ro.use_data_netmgrd=false
 
+# fastbootd
+ro.fastbootd.available=true
+
 # GPS
 persist.gps.qc_nlp_in_use=0
 ro.gps.agps_provider=1

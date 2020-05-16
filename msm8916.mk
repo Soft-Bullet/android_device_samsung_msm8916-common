@@ -134,6 +134,10 @@ PRODUCT_PACKAGES += \
 # Exclude AudioFX
 TARGET_EXCLUDES_AUDIOFX := true
 
+# fastbootd
+PRODUCT_PACKAGES += \
+    fastbootd
+
 # FM
 PRODUCT_PACKAGES += \
     FMRadio \
