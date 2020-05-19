@@ -33,8 +33,9 @@
 
 # Root directories
 /firmware-modem(/.*)?										u:object_r:firmware-modem_file:s0
-/tombstones(/.*)?											u:object_r:misc_file:s0
+/tombstones                                             u:object_r:rootfs:s0
 /misc(/.*)?											u:object_r:misc_file:s0
+/hidden                                                 u:object_r:rootfs:s0
 
 # Sensors
 /efs/prox_cal											u:object_r:sensors_efs_file:s0
