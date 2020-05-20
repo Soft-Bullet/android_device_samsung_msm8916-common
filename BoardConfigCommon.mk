@@ -167,6 +167,9 @@ BOARD_USES_QCOM_HARDWARE := true
 # Radio
 BOARD_PROVIDES_LIBRIL := true
 
+# Security patch level
+VENDOR_SECURITY_PATCH := 2017-08-01
+
 # SELinux
 include device/qcom/sepolicy-legacy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += \
