@@ -252,14 +252,7 @@ PRODUCT_PACKAGES += \
     libcnefeatureconfig \
     librmnetctl \
     libxml2 \
-    libsecnativefeature \
-
-# Manual SIM Provision
-PRODUCT_PACKAGES += \
-    qti-telephony-common
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
+    libsecnativefeature
 
 # Misc
 PRODUCT_PACKAGES += \
